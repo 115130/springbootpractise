@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="application.properties"/>
+<!--    <classPathEntry location="classpath:/mariadb-java-client-2.7.4.jar"/>-->
+    <!--一个数据库的配置，id为配置名字,多个配置只要不重复即可，第二个可选MyBatis3和MyBatis3Simple
+        第三个flat是一个表对应一个类
+    -->
+    <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <!--是否带时间戳-->
+            <property name="suppressDate" value="false"/>
+            <!--是否带注解-->
+            <property name="addRemarkComments" value="false"/>
+        </commentGenerator>
+        <!--连接参数-->
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+                        connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}"
+                        password="${spring.datasource.password}">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+
+        <!--类型转换-->
+        <javaTypeResolver >
+            <!--false将大数类型转换成Integer
+                true将大数转成DECIMAL-->
+            <property name="forceBigDecimals" value="true" />
+            <!--将时间转换成本地时间-->
+            <property name="userJSR310Types" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.example.android.domain" targetProject="src/main/java">
+            <!-- 是否在包后缀加上schema-->
+            <property name="enableSubPackages" value="false" />
+            <!--是否在string类型字段在set方法中去掉空格-->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+<!--        <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources">-->
+<!--            <property name="enableSubPackages" value="true" />-->
+<!--        </sqlMapGenerator>-->
+
+        <!--XMLMAPPER是xml配置文件
+            ANNOTATEDMAPPER是注解-->
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.example.android.mapper"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <table  tableName="class_info" domainObjectName="ClassInfo" />
+        <table  tableName="hostel" domainObjectName="Hostel" />
+        <table  tableName="late_return_table" domainObjectName="LateReturnTable" />
+        <table  tableName="user" domainObjectName="User" />
+        <table  tableName="visit_table" domainObjectName="VisitTable" />
+<!--            <property name="useActualColumnNames" value="true"/>-->
+<!--            <generatedKey column="ID" sqlStatement="DB2" identity="true" />-->
+<!--            <columnOverride column="DATE_FIELD" property="startDate" />-->
+<!--            <ignoreColumn column="FRED" />-->
+<!--            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />-->
+
+    </context>
+</generatorConfiguration>
