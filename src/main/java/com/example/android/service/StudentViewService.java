@@ -40,13 +40,13 @@ public class StudentViewService {
         return getStudentViewByUserName(user);
     }
 
-    public int deleteStudent(String studentNumber){
+    public int deleteStudent(String studentNumber) {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andStudentNumberEqualTo(studentNumber);
         return userMapper.deleteByExample(userExample);
     }
 
-    public int updateStudentClassInfo(Long studentId,Long classInfoId){
+    public int updateStudentClassInfo(Long studentId, Long classInfoId) {
         User user = new User();
         user.setId(studentId);
         user.setClassInfo(classInfoId);
@@ -54,7 +54,7 @@ public class StudentViewService {
         return userMapper.updateByPrimaryKey(user);
     }
 
-    public int updateStudentHostel(Hostel hostel,Long userId){
+    public int updateStudentHostel( Long userId) {
         HostelExample hostelExample = new HostelExample();
         //找到所有住人数小于4的宿舍并排序再获取人数最多的（少）的宿舍
         hostelExample.createCriteria().andCountLessThan(4);
@@ -62,7 +62,7 @@ public class StudentViewService {
         hostels.sort(Comparator.comparingInt(Hostel::getCount));
 
         //如果没有空余宿舍就返回-3
-        if (hostels.isEmpty()){
+        if (hostels.isEmpty()) {
             return -1;
         }
         Hostel newHostel = hostels.get(0);
@@ -70,7 +70,7 @@ public class StudentViewService {
         User user = userMapper.selectByPrimaryKey(userId);
         Long hostelId = user.getHostel();
         Hostel oldHostel = hostelMapper.selectByPrimaryKey(hostelId);
-        oldHostel.setCount(oldHostel.getCount()-1);
+        oldHostel.setCount(oldHostel.getCount() - 1);
         //更新用户类宿舍号
         user.setHostel(newHostel.getId());
         userMapper.updateByPrimaryKey(user);

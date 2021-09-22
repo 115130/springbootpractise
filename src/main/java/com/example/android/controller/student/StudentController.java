@@ -19,7 +19,7 @@ public class StudentController {
     StudentViewService studentViewService;
 
     @PostMapping("index")
-    private ResponseData studentIndex(HttpSession session){
+    public ResponseData studentIndex(HttpSession session){
         User user = (User)session.getAttribute("user");
         if (user==null){
             return new ResponseData(ExceptionMsg.FAILED);
@@ -27,6 +27,4 @@ public class StudentController {
         StudentView studentByUserId = studentViewService.findStudentByUserId(user.getId());
         return new ResponseData(ExceptionMsg.SUCCESS,studentByUserId);
     }
-
-
 }

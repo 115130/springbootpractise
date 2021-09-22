@@ -3,6 +3,7 @@ package com.example.android.controller.teacher;
 import com.example.android.domain.Hostel;
 import com.example.android.domain.result.ExceptionMsg;
 import com.example.android.domain.result.ResponseData;
+import com.example.android.domain.view.HostelView;
 import com.example.android.service.HostelService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,15 @@ public class HostelController {
 
     @Resource
     HostelService hostelService;
+
+    @PostMapping("findHostelByHostelId")
+    public ResponseData findHostelByHostelId(Long hostelId){
+        List<HostelView> hostelByHostelId = hostelService.findHostelByHostelId(hostelId);
+        if (hostelByHostelId==null){
+            return new ResponseData(ExceptionMsg.ParamError);
+        }
+        return new ResponseData(ExceptionMsg.SUCCESS,hostelByHostelId);
+    }
 
     @PostMapping("findAllHostel")
     public ResponseData findAllHostel(){

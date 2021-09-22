@@ -5,7 +5,6 @@ import com.example.android.domain.result.ExceptionMsg;
 import com.example.android.domain.result.ResponseData;
 import com.example.android.service.HostelService;
 import com.example.android.service.UserService;
-import com.example.android.util.EncryptUtil;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 @RestController
-public class UserController {
+public class LoginController {
     @Resource
     private UserService userService;
 

@@ -19,7 +19,7 @@ public class LateReturnTableService {
         return lateReturnTableMapper.insert(lateReturnTable);
     }
 
-    public List<LateReturnTable> queryAllLateReturnTable() {
+    public List<LateReturnTable> findAllLateReturnTable() {
         LateReturnTableExample lateReturnTableExample = new LateReturnTableExample();
         lateReturnTableExample.createCriteria().andIdIsNotNull();
         return lateReturnTableMapper.selectByExample(lateReturnTableExample);

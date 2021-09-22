@@ -3,6 +3,7 @@ package com.example.android;
 import com.example.android.domain.User;
 import com.example.android.domain.UserExample;
 import com.example.android.mapper.UserMapper;
+import com.example.android.service.ClassInfoService;
 import com.example.android.service.UserService;
 import com.example.android.util.EncryptUtil;
 import net.bytebuddy.implementation.bind.annotation.RuntimeType;
@@ -22,6 +23,9 @@ class AdnroidApplicationTests {
     UserMapper studentMapper;
     @Resource
     UserService loginService;
+
+    @Resource
+    ClassInfoService classInfoService;
 
     @Test
     void contextLoads() {
@@ -58,11 +62,11 @@ class AdnroidApplicationTests {
 
     @Test
     void b(){
-        User user = new User();
-        user.setUsername("test");
-        user.setPassword("test");
-        System.out.println(loginService.login(user));
-        System.out.println(EncryptUtil.encrypt("test"));
+//        User user = new User();
+//        user.setUsername("test");
+//        user.setPassword("test");
+//        System.out.println(loginService.login(user));
+        System.out.println(EncryptUtil.encrypt("测试"));
 
     }
 
@@ -82,6 +86,11 @@ class AdnroidApplicationTests {
             System.out.println(user);
         }
         System.out.println(new Date());
+    }
+
+    @Test
+    void c(){
+        System.out.println(classInfoService.findClassViewByStudentNumber("201710244104"));
     }
 
 }

@@ -6,6 +6,7 @@ import com.example.android.mapper.VisitTableMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,10 +21,12 @@ public class VisitTableService {
     }
 
     public int addVisitTable(VisitTable visitTable){
+        visitTable.setCreatedDate(new Date());
         return visitTableMapper.insert(visitTable);
     }
 
     public int updateVisitTable(VisitTable visitTable){
+        visitTable.setLastModify(new Date());
         return visitTableMapper.updateByPrimaryKey(visitTable);
     }
     public int deleteVisitTable(Long visitTableId){

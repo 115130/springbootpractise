@@ -4,6 +4,7 @@ import com.example.android.domain.Hostel;
 import com.example.android.domain.HostelExample;
 import com.example.android.domain.User;
 import com.example.android.domain.UserExample;
+import com.example.android.domain.view.HostelView;
 import com.example.android.mapper.HostelMapper;
 import com.example.android.mapper.UserMapper;
 import org.springframework.stereotype.Service;
@@ -74,6 +75,7 @@ public class HostelService {
         //输入的参数是空
             return -2;
         }
+        hostel.setCreatedDate(new Date());
         int insert = hostelMapper.insert(hostel);
         //添加成功
         if (insert > 0) {
@@ -84,6 +86,21 @@ public class HostelService {
         }
         //操作失败
         return -3;
+    }
+
+    public List<HostelView> findHostelByHostelId(Long hostelId){
+        List<HostelView> hostelViewList = new ArrayList<>();
+        Hostel hostel = hostelMapper.selectByPrimaryKey(hostelId);
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andHostelEqualTo(hostelId);
+        List<User> users = userMapper.selectByExample(userExample);
+        if (users.isEmpty()){
+            return null;
+        }
+        for (User user : users) {
+            hostelViewList.add(new HostelView(user,hostel));
+        }
+        return hostelViewList;
     }
 
 
