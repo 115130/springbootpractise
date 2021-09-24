@@ -40,7 +40,7 @@ class AdnroidApplicationTests {
         User user = new User();
         user.setAdmin(0);
         user.setUsername("test12");
-        user.setPassword(EncryptUtil.encrypt("test"));
+        user.setPassword(EncryptUtil.encrypt("321"));
         user.setStudentNumber("202102102010201012");
         studentMapper.insert(user);
         System.out.println();
@@ -66,7 +66,7 @@ class AdnroidApplicationTests {
 //        user.setUsername("test");
 //        user.setPassword("test");
 //        System.out.println(loginService.login(user));
-        System.out.println(EncryptUtil.encrypt("测试"));
+        System.out.println(EncryptUtil.encrypt("321"));
 
     }
 

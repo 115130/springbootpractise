@@ -46,14 +46,6 @@ public class LoginController {
 
     @PostMapping("studentRegister")
     public ResponseData register(User user) {
-        user.setAdmin(0);
-        int register = userService.register(user);
-        if (register > 0){
-            hostelService.autoAllotHostel(user);
-            return new ResponseData(ExceptionMsg.SUCCESS);
-        }if (register==-1){
-            return new ResponseData(ExceptionMsg.UserNameError);
-        }
-        return new ResponseData(ExceptionMsg.ParamError);
+        return userService.register(user);
     }
 }

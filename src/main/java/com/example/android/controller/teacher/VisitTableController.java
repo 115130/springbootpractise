@@ -31,7 +31,7 @@ public class VisitTableController {
         }
         return new ResponseData(ExceptionMsg.FAILED);
     }
-    @PostMapping("addVisitTable")
+    @PostMapping("updateVisitTable")
     public ResponseData updateVisitTable(VisitTable visitTable){
         int i = visitTableService.updateVisitTable(visitTable);
         if (i>0){
@@ -39,7 +39,7 @@ public class VisitTableController {
         }
         return new ResponseData(ExceptionMsg.FAILED);
     }
-    @PostMapping("addVisitTable")
+    @PostMapping("deleteVisitTable")
     public ResponseData deleteVisitTable(Long visitTableId){
         int i = visitTableService.deleteVisitTable(visitTableId);
         if (i>0){

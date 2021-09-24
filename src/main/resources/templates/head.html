@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+<title>头部</title>
+<link rel="stylesheet" type="text/css" th:href="@{css/public.css}" />
+<script type="text/javascript" th:src="@{js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{js/public.js}"></script>
+</head>
+
+<body>
+	<!-- 头部 -->
+	<div class="head">
+		<div class="headL" style="margin-top: -15px;">
+			<img class="headLogo" th:src="@{img/logLOGO.png}"/>
+		</div>
+		<div class="headR" style="margin-top:40px;">
+			欢迎：<span style="color:#FFF" th:text="${session.user.username}"></span> <a th:href="@{/static/resources/templates/login.html}" target="_top" rel="external">【退出】</a>
+		</div>
+	</div>
+</body>
+</html>

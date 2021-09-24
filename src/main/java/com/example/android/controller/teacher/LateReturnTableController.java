@@ -41,9 +41,9 @@ public class LateReturnTableController {
         return new ResponseData(ExceptionMsg.FAILED);
     }
 
-    @PostMapping("addLateReturnTable")
-    public ResponseData modifyReturnTableToStudentId(Long hostel, Long lateReturnTableId) {
-        int i = lateReturnTableService.modifyReturnTableToStudentId(hostel, lateReturnTableId);
+    @PostMapping("modifyReturnTableToStudentId")
+    public ResponseData modifyReturnTableToStudentId(Long studentId, Long lateReturnTableId) {
+        int i = lateReturnTableService.modifyReturnTableToStudentId(studentId, lateReturnTableId);
         if (i > 0) {
             return new ResponseData(ExceptionMsg.SUCCESS);
         }

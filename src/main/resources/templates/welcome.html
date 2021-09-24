@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link th:href="@{css/style.css}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" th:src="@{js/jquery.js}"></script>
+</head>
+
+<body>
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">首页</a></li>
+    </ul>
+</div>
+
+<div class="mainindex">
+
+
+    <div class="welinfo">
+        <span><img th:src="@{img/sun.png}" alt="天气" /></span>
+        <b><span th:text="${session.user.username}"></span>早上好，欢迎使用宿舍管理系统</b>
+<!--        <a href="#">帐号设置</a>-->
+    </div>
+
+    <div class="welinfo">
+        <span><img th:src="@{img/time.png}" alt="时间" /></span>
+         （点击查看个人信息？<a th:href="@{toStudentDetails}">请点这里</a>）
+    </div>
+    <div class="xline"></div>
+</div>
+</body>
+</html>

@@ -3,6 +3,8 @@ package com.example.android.service;
 
 import com.example.android.domain.*;
 
+import com.example.android.domain.result.ExceptionMsg;
+import com.example.android.domain.result.ResponseData;
 import com.example.android.mapper.UserMapper;
 import com.example.android.util.EncryptUtil;
 import org.apache.logging.log4j.util.Strings;
@@ -19,6 +21,8 @@ public class UserService {
     @Resource
     UserMapper userMapper;
 
+    @Resource HostelService hostelService;
+
 
     public User login(User user) {
         String password = user.getPassword();
@@ -34,7 +38,7 @@ public class UserService {
         return null;
     }
 
-    public int register(User user) {
+    public ResponseData register(User user) {
         ArrayList<String> strings = new ArrayList<String>(){{
             add(user.getUsername());
         }};
@@ -43,15 +47,26 @@ public class UserService {
 
         long userCount = userMapper.countByExample(userExample);
         if (userCount > 0) {
-            return -1;
+            return new ResponseData(ExceptionMsg.UserNameError);
         }
+        userExample.clear();
+        userExample.createCriteria().andStudentNumberEqualTo(user.getStudentNumber());
+        long l = userMapper.countByExample(userExample);
+
+        if (l>0){
+            return new ResponseData("000004","学号错误");
+        }
+
         if (Strings.trimToNull(user.getUsername()) != null) {
             user.setPassword(EncryptUtil.encrypt(user.getPassword()));
             user.setCreatedDate(new Date());
             user.setStatus("未入住");
-            return userMapper.insert(user);
+            user.setAdmin(0);
+            userMapper.insert(user);
+            hostelService.autoAllotHostel(user);
+            return new ResponseData(ExceptionMsg.SUCCESS);
         }
-        return -2;
+        return new ResponseData(ExceptionMsg.FAILED);
     }
 
     public int existUserName(String username){
