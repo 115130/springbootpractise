@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link th:href="@{css/haiersoft.css}" rel="stylesheet" type="text/css" media="screen,print"/>
+    <link th:href="@{css/print.css}" rel="stylesheet" type="text/css" media="print"/>
+    <script th:src="@{js/jquery-1.10.1.min.js}"></script>
+    <script th:src="@{js/side.js}" type="text/javascript"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+<!-- Popup -->
+<div id="Popup" style="top: 200px;">
+<h2>单个教室所有人的信息</h2>
+        <table class="table table-bordered table-hover"   width="80%">
+            <tr>
+                <th>学生id</th>
+                <th>姓名</th>
+                <th>学号</th>
+                <th>入住状态</th>
+                <th>专业</th>
+                <th>班级号</th>
+                <th>年级</th>
+            </tr>
+            <tr th:each="classView,status:${classViews}" >
+                <td th:text="${classView.id}"></td>
+                <td th:text="${classView.username}">{{classView.username}}</td>
+                <td th:text="${classView.studentNumber}">{{classView.studentNumber}}</td>
+                <td th:text="${classView.status}">{{classView.status}}</td>
+                <td th:text="${classView.speciality}">{{classView.speciality}}</td>
+                <td th:text="${classView.classes}">{{classView.classes}}</td>
+                <td th:text="${classView.grade}">{{classView.grade}}</td>
+            </tr>
+        </table>
+
+</div>
+<!-- /Popup -->
+</body>
+</html>

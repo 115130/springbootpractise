@@ -7,6 +7,8 @@
 <link rel="stylesheet" type="text/css" th:href="@{css/page.css}" />
 <script type="text/javascript" th:src="@{js/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{js/public.js}"></script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/layer.js"></script>
 <script type="text/javascript">
 	$(function () {
 		$("button").click(function () {
@@ -22,14 +24,16 @@
 				type:"post",
 				dataType:"json",
 				success:function (data) {
-					alert(data.rspMsg);
-				  if(data.rspCode==='000010'){
-					  location.href="toStudentIndex";
-				  }else if(data.rspCode==='000011'){
-					  location.href="toIndex";
-				  }else {
-					  location.href="/";
-				  }
+					layer.msg(data.rspMsg);
+					setTimeout(function (){
+						if(data.rspCode==='000010'){
+							location.href="toStudentIndex";
+						}else if(data.rspCode==='000011'){
+							location.href="toIndex";
+						}else {
+							location.href="/";
+						}
+					},1000)
                 },
                 // error:function (data){
 				// 	alert("用户名或密码不正确");

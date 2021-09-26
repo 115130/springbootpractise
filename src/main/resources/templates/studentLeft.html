@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页左侧导航</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/public.css}"/>
+    <script type="text/javascript" th:src="@{js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{js/public.js}"></script>
+    <head>
+
+    </head>
+
+<body id="bg">
+<!-- 左边节点 -->
+<div class="container">
+
+    <div class="leftsidebar_box">
+        <a th:href="@{/toWelcome}" target="main">
+            <div class="line">
+                <img th:src="@{img/coin01.png}"/>&nbsp;&nbsp;首页
+            </div>
+        </a>
+        <dl class="system_log">
+
+                <dt>
+                    <!--                <img class="icon1" th:src="@{img/coin03.png}"/>-->
+                    <img class="icon2" th:src="@{img/coin04.png}"/>
+                    <a class="cks" th:href="@{/toStudentDetails}" target="main">查看所有信息</a>
+                    <!--                <img class="icon3" th:src="@{img/coin19.png}"/>-->
+                    <!--                <img class="icon4" th:src="@{img/coin20.png}"/>-->
+                </dt>
+
+        </dl>
+
+
+    </div>
+
+</div>
+</body>
+</html>

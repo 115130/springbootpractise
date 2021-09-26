@@ -5,6 +5,7 @@ import com.example.android.domain.view.StudentView;
 import com.example.android.mapper.ClassInfoMapper;
 import com.example.android.mapper.HostelMapper;
 import com.example.android.mapper.UserMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,6 +14,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Service
 public class StudentViewService {
     @Resource
@@ -26,8 +28,9 @@ public class StudentViewService {
 
     public List<StudentView> findAllStudent() {
         UserExample userExample = new UserExample();
-        userExample.createCriteria().andUsernameIsNotNull();
+        userExample.createCriteria().andUsernameIsNotNull().andAdminEqualTo(0);
         List<User> users = userMapper.selectByExample(userExample);
+        log.error(users.toString());
         ArrayList<StudentView> studentViews = new ArrayList<>();
         for (User user : users) {
             studentViews.add(getStudentViewByUserName(user));
@@ -39,6 +42,10 @@ public class StudentViewService {
         User user = userMapper.selectByPrimaryKey(id);
         return getStudentViewByUserName(user);
     }
+    public User selectUserByUserId(Long id) {
+        return userMapper.selectByPrimaryKey(id);
+
+    }
 
     public int deleteStudent(String studentNumber) {
         UserExample userExample = new UserExample();
@@ -46,15 +53,22 @@ public class StudentViewService {
         return userMapper.deleteByExample(userExample);
     }
 
-    public int updateStudentClassInfo(Long studentId, Long classInfoId) {
-        User user = new User();
-        user.setId(studentId);
-        user.setClassInfo(classInfoId);
+    public int deleteStudentById(Long id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        Hostel hostel = hostelMapper.selectByPrimaryKey(user.getHostel());
+        hostel.setCount(hostel.getCount()-1);
+        hostelMapper.updateByPrimaryKey(hostel);
+        return userMapper.deleteByPrimaryKey(id);
+    }
+
+
+
+    public int updateUserNameAndPassword(User user){
         user.setLastModify(new Date());
         return userMapper.updateByPrimaryKey(user);
     }
 
-    public int updateStudentHostel( Long userId) {
+    public int updateStudentHostel(User user) {
         HostelExample hostelExample = new HostelExample();
         //找到所有住人数小于4的宿舍并排序再获取人数最多的（少）的宿舍
         hostelExample.createCriteria().andCountLessThan(4);
@@ -66,10 +80,14 @@ public class StudentViewService {
             return -1;
         }
         Hostel newHostel = hostels.get(0);
-
-        User user = userMapper.selectByPrimaryKey(userId);
+        if (user==null){
+            return -2;
+        }
         Long hostelId = user.getHostel();
         Hostel oldHostel = hostelMapper.selectByPrimaryKey(hostelId);
+        if (oldHostel==null){
+            return -3;
+        }
         oldHostel.setCount(oldHostel.getCount() - 1);
         //更新用户类宿舍号
         user.setHostel(newHostel.getId());
@@ -84,13 +102,15 @@ public class StudentViewService {
 
     private StudentView getStudentViewByUserName(User user) {
         StudentView studentView = new StudentView();
+        studentView.setUsername(user.getUsername());
         studentView.setStudentNumber(user.getStudentNumber());
         studentView.setId(user.getId());
+
         studentView.setStatus(user.getStatus());
         Hostel hostel = hostelMapper.selectByPrimaryKey(user.getHostel());
         ClassInfo classInfo = classInfoMapper.selectByPrimaryKey(user.getClassInfo());
-        studentView.setHostel(hostel);
-        studentView.setClassInfo(classInfo);
+        studentView.setHostel(hostel.getId());
+        studentView.setClassInfo(classInfo.getId());
         return studentView;
     }
 

@@ -4,9 +4,12 @@ import com.example.android.domain.Hostel;
 import com.example.android.domain.HostelExample;
 import com.example.android.domain.User;
 import com.example.android.domain.UserExample;
+import com.example.android.domain.result.ExceptionMsg;
+import com.example.android.domain.result.ResponseData;
 import com.example.android.domain.view.HostelView;
 import com.example.android.mapper.HostelMapper;
 import com.example.android.mapper.UserMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,6 +18,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Service
 public class HostelService {
     @Resource
@@ -33,6 +37,9 @@ public class HostelService {
         //找到所有住人数小于4的宿舍并排序再获取人数最多的（少）的宿舍
         hostelExample.createCriteria().andCountLessThan(4);
         List<Hostel> hostels = hostelMapper.selectByExample(hostelExample);
+        if (hostels.isEmpty()){
+            return -2;
+        }
         hostels.sort(Comparator.comparingInt(Hostel::getCount));
         Hostel hostel = hostels.get(0);
         hostel.setCount(hostel.getCount() + 1);
@@ -106,8 +113,20 @@ public class HostelService {
 
 
     public int updateHostel(Hostel hostel){
+        Long id = hostel.getId();
         hostel.setLastModify(new Date());
-        return hostelMapper.updateByPrimaryKey(hostel);
+        Hostel hostel1 = hostelMapper.selectByPrimaryKey(id);
+        hostel1.setGrade(hostel.getGrade());
+        return hostelMapper.updateByPrimaryKey(hostel1);
+    }
+
+    public ResponseData deleteHostelById(Long id){
+        int i = hostelMapper.deleteByPrimaryKey(id);
+        log.error(String.valueOf(i));
+        if (i>0){
+           return new ResponseData(ExceptionMsg.SUCCESS);
+        }
+        return new ResponseData(ExceptionMsg.FAILED);
     }
 
 

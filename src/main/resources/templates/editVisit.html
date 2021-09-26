@@ -13,13 +13,13 @@
         $(function () {
             $("#submit").click(function () {
                 let id =$("#id").val();
-                let username =$("#username").val();
-                let password =$("#password").val()
-                let classInfo = $("#classInfo").val();
-                let hostel = $("#hostel").val();
+                let accessedHostel =$("#accessedHostel").val();
+                let accessedStudent =$("#accessedStudent").val()
+                let lateModify = $("#lateModify").val();
+                let phone = $("#phone").val();
                 $.ajax({
                     url:"admin/updateStudent",
-                    data:{"id":id,"username":username,"password":password,"hostel":hostel,"classInfo":classInfo},
+                    data:{"id":id,"accessedHostel":accessedHostel,"accessedStudent":accessedStudent,"lateModify":lateModify,"phone":phone},
                     type:"POST",
                     dataType:"json",
                     success:function (data) {
@@ -47,7 +47,7 @@
                     <th>姓名：<span class="f_cB">*</span></th>
                     <td>
                         <div class="txtbox floatL" style="width:200px;">
-                            <input id="username" type="text"   placeholder="请输入姓名">
+                            <input id="accessedHostel" type="text"   placeholder="访问的宿舍号">
                         </div>
                     </td>
                 </tr>
@@ -55,7 +55,7 @@
                     <th>密码：<span class="f_cB">*</span></th>
                     <td>
                         <div class="txtbox floatL" style="width:200px;">
-                            <input id="password" name="password" type="password"  placeholder="请输入密码">
+                            <input id="accessedStudent" name="password" type="text"  placeholder="访问的学生">
                         </div>
                     </td>
                 </tr>
@@ -63,7 +63,7 @@
                     <th>宿舍：<span class="f_cB">*</span></th>
                     <td>
                         <div class="txtbox floatL" style="width:200px;">
-                            <input id="hostel" name="password" type="text"  placeholder="宿舍号码">
+                            <input id="lateModify" name="password" type="text"  placeholder="修改时间">
                         </div>
                     </td>
                 </tr>
@@ -71,7 +71,7 @@
                     <th>班级：<span class="f_cB">*</span></th>
                     <td>
                         <div class="txtbox floatL" style="width:200px;">
-                            <input id="classInfo" name="password" type="text"  placeholder="班级号码">
+                            <input id="phone" name="password" type="text"  placeholder="访问手机号">
                         </div>
                     </td>
                 </tr>

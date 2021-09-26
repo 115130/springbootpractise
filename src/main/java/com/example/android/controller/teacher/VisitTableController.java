@@ -24,25 +24,27 @@ public class VisitTableController {
     }
 
     @PostMapping("addVisitTable")
-    public ResponseData addVisitTable(VisitTable visitTable){
+    public ResponseData addVisitTable(VisitTable visitTable) {
         int i = visitTableService.addVisitTable(visitTable);
-        if (i>0){
+        if (i > 0) {
             return new ResponseData(ExceptionMsg.SUCCESS);
         }
         return new ResponseData(ExceptionMsg.FAILED);
     }
+
     @PostMapping("updateVisitTable")
-    public ResponseData updateVisitTable(VisitTable visitTable){
+    public ResponseData updateVisitTable(VisitTable visitTable) {
         int i = visitTableService.updateVisitTable(visitTable);
-        if (i>0){
+        if (i > 0) {
             return new ResponseData(ExceptionMsg.SUCCESS);
         }
         return new ResponseData(ExceptionMsg.FAILED);
     }
+
     @PostMapping("deleteVisitTable")
-    public ResponseData deleteVisitTable(Long visitTableId){
+    public ResponseData deleteVisitTable(Long visitTableId) {
         int i = visitTableService.deleteVisitTable(visitTableId);
-        if (i>0){
+        if (i > 0) {
             return new ResponseData(ExceptionMsg.SUCCESS);
         }
         return new ResponseData(ExceptionMsg.FAILED);

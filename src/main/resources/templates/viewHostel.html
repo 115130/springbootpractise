@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link th:href="@{css/haiersoft.css}" rel="stylesheet" type="text/css" media="screen,print"/>
+    <link th:href="@{css/print.css}" rel="stylesheet" type="text/css" media="print"/>
+    <script th:src="@{js/jquery-1.10.1.min.js}"></script>
+    <script th:src="@{js/side.js}" type="text/javascript"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <div class="container"  th:each="hostelView,status:${hostelViews}">
+        <div class="row" >
+            <div class="col-md-6 col-md-6"  th:if="${status.count%2==1}">
+               <h3 th:text="'学生id: '+${hostelView.id}"></h3>
+                <p th:text="'学号：'+${hostelView.studentNumber}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p th:text="'学生姓名：'+${hostelView.studentName}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+            <div class="col-md-6 col-md-6" th:if="${status.count%2==0}" >
+
+                <h3 th:text="'学生id：'+${hostelView.id}"></h3>
+                <p th:text="${'学号：'+hostelView.studentNumber}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p th:text="${'学生姓名：'+hostelView.studentName}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+        </div>
+    </div>
+<!--    <div class="container" th:each="hostelView,status:${hostelViews}">-->
+<!--        <div class="row"  >-->
+<!--            <div class="col-md-6 col-md-6" th:if="${status.count==3}">-->
+
+<!--                <h5 th:text="${hostelView.id}"></h5>-->
+<!--                <p th:text="${hostelView.studentNumber}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
+<!--                <p th:text="${hostelView.studentName}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
+<!--            </div>-->
+<!--            <div class="col-md-6 col-md-6" th:if="${status.count==4}">-->
+
+<!--                <h5 th:text="${hostelView.id}"></h5>-->
+<!--                <p th:text="${hostelView.studentNumber}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
+<!--                <p th:text="${hostelView.studentName}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<body>
+
+</body>
+</html>

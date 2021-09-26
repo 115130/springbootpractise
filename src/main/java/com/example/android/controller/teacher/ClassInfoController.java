@@ -59,4 +59,5 @@ public class ClassInfoController {
         }
         return new ResponseData(ExceptionMsg.FAILED);
     }
+
 }

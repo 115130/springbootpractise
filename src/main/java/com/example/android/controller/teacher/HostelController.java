@@ -5,6 +5,8 @@ import com.example.android.domain.result.ExceptionMsg;
 import com.example.android.domain.result.ResponseData;
 import com.example.android.domain.view.HostelView;
 import com.example.android.service.HostelService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("admin")
 public class HostelController {
@@ -49,19 +52,26 @@ public class HostelController {
 
     @PostMapping("score")
     public ResponseData score(Hostel hostel){
+        log.error(hostel.toString());
         int score = hostelService.updateHostel(hostel);
-        if (score<0){
-            return new ResponseData(ExceptionMsg.FAILED);
+        if (score>0){
+            return new ResponseData(ExceptionMsg.SUCCESS);
         }
-        return new ResponseData(ExceptionMsg.SUCCESS);
+        return new ResponseData(ExceptionMsg.FAILED);
     }
 
     @PostMapping("updateHostel")
     public ResponseData updateHostel(Hostel hostel){
         int score = hostelService.updateHostel(hostel);
-        if (score<0){
-            return new ResponseData(ExceptionMsg.FAILED);
+        if (score>0){
+            return new ResponseData(ExceptionMsg.SUCCESS);
         }
-        return new ResponseData(ExceptionMsg.SUCCESS);
+        return new ResponseData(ExceptionMsg.FAILED);
     }
+
+    @GetMapping("deleteHostelById")
+    public ResponseData deleteHostelById(Long id){
+        return hostelService.deleteHostelById(id);
+    }
+
 }

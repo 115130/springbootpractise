@@ -7,6 +7,8 @@
 <link rel="stylesheet" type="text/css" th:href="@{css/page.css}" />
 <script type="text/javascript" th:src="@{js/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{js/public.js}"></script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/layer.js"></script>
 <script type="text/javascript">
 	$(function () {
 		$("button").click(function () {
@@ -16,18 +18,21 @@
 			var password=$("#password").val();
 
 			var studentNumber=$("#studentNumber").val();
+			var classInfo=$("#classInfo").val();
 
 			//发出ajax请求
 			$.ajax({
 				url:"studentRegister",
-				data:{"username":myName,"password":password,"studentNumber":studentNumber},
+				data:{"username":myName,"password":password,"studentNumber":studentNumber,"classInfo":classInfo},
 				type:"post",
 				dataType:"json",
 				success:function (data) {
-				  alert(data.rspMsg)
-				  if(data.rspCode==='000000'){
-					  location.href="/";
-				  }
+				  layer.msg(data.rspMsg)
+				  setTimeout(function (){
+					  if(data.rspCode==='000000'){
+						  location.href="/";
+					  }
+				  },500);
                 },
 			});
         });
@@ -56,6 +61,11 @@
 				<div class="lgD">
 					<img class="img1" th:src="@{img/logName.png}" />
 					<input type="text" id="studentNumber" placeholder="输入学号" />
+				</div>
+
+				<div class="lgD">
+					<img class="img1" th:src="@{img/logName.png}" />
+					<input type="text" id="classInfo" placeholder="班级号" />
 				</div>
 
 

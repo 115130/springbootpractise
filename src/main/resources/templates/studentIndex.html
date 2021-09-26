@@ -9,14 +9,11 @@
     <frame th:src="@{/toHead}"
            name="headmenu" id="mainFrame" title="mainFrame"><!-- 引用头部 -->
     <!-- 引用左边和主体部分 -->
-    <frameset  scrolling="No"
+    <frameset  rows="100*" cols="220,*" scrolling="No"
               framespacing="0" frameborder="no" border="0">
-<!--        <frame th:src="@{/toLeft}" name="leftmenu" id="mainFrame2" title="mainFrame">-->
+        <frame th:src="@{/toStudentLeft}" name="leftmenu" id="mainFrame2" title="mainFrame">
         <frame th:src="@{/toWelcome}" name="main" scrolling="yes" noresize="noresize"
                id="rightFrame" title="rightFrame">
-
     </frameset>
-
 </frameset>
-
 </html>
