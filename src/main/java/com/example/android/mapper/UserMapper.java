@@ -16,7 +16,6 @@ import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
 
-
 public interface UserMapper {
     @SelectProvider(type=UserSqlProvider.class, method="countByExample")
     long countByExample(UserExample example);
@@ -31,16 +30,16 @@ public interface UserMapper {
     int deleteByPrimaryKey(Long id);
 
     @Insert({
-        "insert into user (id, username, ",
-        "password, status, ",
-        "created_date, last_modify, ",
-        "class_info, hostel, ",
-        "student_number, admin)",
-        "values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, ",
-        "#{password,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, ",
-        "#{createdDate,jdbcType=TIMESTAMP}, #{lastModify,jdbcType=TIMESTAMP}, ",
-        "#{classInfo,jdbcType=BIGINT}, #{hostel,jdbcType=BIGINT}, ",
-        "#{studentNumber,jdbcType=VARCHAR}, #{admin,jdbcType=INTEGER})"
+        "insert into user (id, student_number, ",
+        "username, password, ",
+        "admin, class_info, ",
+        "created_date, hostel, ",
+        "last_modify, status)",
+        "values (#{id,jdbcType=BIGINT}, #{studentNumber,jdbcType=VARCHAR}, ",
+        "#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, ",
+        "#{admin,jdbcType=INTEGER}, #{classInfo,jdbcType=BIGINT}, ",
+        "#{createdDate,jdbcType=TIMESTAMP}, #{hostel,jdbcType=BIGINT}, ",
+        "#{lastModify,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})"
     })
     int insert(User record);
 
@@ -50,36 +49,36 @@ public interface UserMapper {
     @SelectProvider(type=UserSqlProvider.class, method="selectByExample")
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+        @Result(column="student_number", property="studentNumber", jdbcType=JdbcType.VARCHAR),
         @Result(column="username", property="username", jdbcType=JdbcType.VARCHAR),
         @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
-        @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR),
-        @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="admin", property="admin", jdbcType=JdbcType.INTEGER),
         @Result(column="class_info", property="classInfo", jdbcType=JdbcType.BIGINT),
+        @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="hostel", property="hostel", jdbcType=JdbcType.BIGINT),
-        @Result(column="student_number", property="studentNumber", jdbcType=JdbcType.VARCHAR),
-        @Result(column="admin", property="admin", jdbcType=JdbcType.INTEGER)
+        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
     List<User> selectByExample(UserExample example);
 
     @Select({
         "select",
-        "id, username, password, status, created_date, last_modify, class_info, hostel, ",
-        "student_number, admin",
+        "id, student_number, username, password, admin, class_info, created_date, hostel, ",
+        "last_modify, status",
         "from user",
         "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+        @Result(column="student_number", property="studentNumber", jdbcType=JdbcType.VARCHAR),
         @Result(column="username", property="username", jdbcType=JdbcType.VARCHAR),
         @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
-        @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR),
-        @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="admin", property="admin", jdbcType=JdbcType.INTEGER),
         @Result(column="class_info", property="classInfo", jdbcType=JdbcType.BIGINT),
+        @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="hostel", property="hostel", jdbcType=JdbcType.BIGINT),
-        @Result(column="student_number", property="studentNumber", jdbcType=JdbcType.VARCHAR),
-        @Result(column="admin", property="admin", jdbcType=JdbcType.INTEGER)
+        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
     User selectByPrimaryKey(Long id);
 
@@ -94,15 +93,15 @@ public interface UserMapper {
 
     @Update({
         "update user",
-        "set username = #{username,jdbcType=VARCHAR},",
+        "set student_number = #{studentNumber,jdbcType=VARCHAR},",
+          "username = #{username,jdbcType=VARCHAR},",
           "password = #{password,jdbcType=VARCHAR},",
-          "status = #{status,jdbcType=VARCHAR},",
-          "created_date = #{createdDate,jdbcType=TIMESTAMP},",
-          "last_modify = #{lastModify,jdbcType=TIMESTAMP},",
+          "admin = #{admin,jdbcType=INTEGER},",
           "class_info = #{classInfo,jdbcType=BIGINT},",
+          "created_date = #{createdDate,jdbcType=TIMESTAMP},",
           "hostel = #{hostel,jdbcType=BIGINT},",
-          "student_number = #{studentNumber,jdbcType=VARCHAR},",
-          "admin = #{admin,jdbcType=INTEGER}",
+          "last_modify = #{lastModify,jdbcType=TIMESTAMP},",
+          "status = #{status,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(User record);

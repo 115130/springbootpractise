@@ -38,8 +38,8 @@ public class HostelController {
     }
 
     @PostMapping("addHostel")
-    public ResponseData addHostel(Hostel hostel){
-        int i = hostelService.addHostel(hostel);
+    public ResponseData addHostel(){
+        int i = hostelService.addHostel();
         if (i==0){
             return new ResponseData(ExceptionMsg.SUCCESS);
         }else if (i==-2){
@@ -52,7 +52,6 @@ public class HostelController {
 
     @PostMapping("score")
     public ResponseData score(Hostel hostel){
-        log.error(hostel.toString());
         int score = hostelService.updateHostel(hostel);
         if (score>0){
             return new ResponseData(ExceptionMsg.SUCCESS);
@@ -62,7 +61,8 @@ public class HostelController {
 
     @PostMapping("updateHostel")
     public ResponseData updateHostel(Hostel hostel){
-        int score = hostelService.updateHostel(hostel);
+        log.error(hostel.toString());
+        int score = hostelService.updateHostelByCount(hostel);
         if (score>0){
             return new ResponseData(ExceptionMsg.SUCCESS);
         }

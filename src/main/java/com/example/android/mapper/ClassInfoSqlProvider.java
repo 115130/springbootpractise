@@ -31,16 +31,16 @@ public class ClassInfoSqlProvider {
             sql.VALUES("id", "#{id,jdbcType=BIGINT}");
         }
         
-        if (record.getSpeciality() != null) {
-            sql.VALUES("speciality", "#{speciality,jdbcType=VARCHAR}");
-        }
-        
         if (record.getClasses() != null) {
             sql.VALUES("classes", "#{classes,jdbcType=VARCHAR}");
         }
         
         if (record.getGrade() != null) {
             sql.VALUES("grade", "#{grade,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSpeciality() != null) {
+            sql.VALUES("speciality", "#{speciality,jdbcType=VARCHAR}");
         }
         
         return sql.toString();
@@ -53,9 +53,9 @@ public class ClassInfoSqlProvider {
         } else {
             sql.SELECT("id");
         }
-        sql.SELECT("speciality");
         sql.SELECT("classes");
         sql.SELECT("grade");
+        sql.SELECT("speciality");
         sql.FROM("class_info");
         applyWhere(sql, example, false);
         
@@ -77,16 +77,16 @@ public class ClassInfoSqlProvider {
             sql.SET("id = #{record.id,jdbcType=BIGINT}");
         }
         
-        if (record.getSpeciality() != null) {
-            sql.SET("speciality = #{record.speciality,jdbcType=VARCHAR}");
-        }
-        
         if (record.getClasses() != null) {
             sql.SET("classes = #{record.classes,jdbcType=VARCHAR}");
         }
         
         if (record.getGrade() != null) {
             sql.SET("grade = #{record.grade,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSpeciality() != null) {
+            sql.SET("speciality = #{record.speciality,jdbcType=VARCHAR}");
         }
         
         applyWhere(sql, example, true);
@@ -98,9 +98,9 @@ public class ClassInfoSqlProvider {
         sql.UPDATE("class_info");
         
         sql.SET("id = #{record.id,jdbcType=BIGINT}");
-        sql.SET("speciality = #{record.speciality,jdbcType=VARCHAR}");
         sql.SET("classes = #{record.classes,jdbcType=VARCHAR}");
         sql.SET("grade = #{record.grade,jdbcType=VARCHAR}");
+        sql.SET("speciality = #{record.speciality,jdbcType=VARCHAR}");
         
         ClassInfoExample example = (ClassInfoExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -111,16 +111,16 @@ public class ClassInfoSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("class_info");
         
-        if (record.getSpeciality() != null) {
-            sql.SET("speciality = #{speciality,jdbcType=VARCHAR}");
-        }
-        
         if (record.getClasses() != null) {
             sql.SET("classes = #{classes,jdbcType=VARCHAR}");
         }
         
         if (record.getGrade() != null) {
             sql.SET("grade = #{grade,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSpeciality() != null) {
+            sql.SET("speciality = #{speciality,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=BIGINT}");

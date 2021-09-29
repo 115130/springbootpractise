@@ -1,6 +1,8 @@
 package com.example.android.service;
 
 import com.example.android.domain.*;
+import com.example.android.domain.result.ExceptionMsg;
+import com.example.android.domain.result.ResponseData;
 import com.example.android.domain.view.StudentView;
 import com.example.android.mapper.ClassInfoMapper;
 import com.example.android.mapper.HostelMapper;
@@ -68,7 +70,7 @@ public class StudentViewService {
         return userMapper.updateByPrimaryKey(user);
     }
 
-    public int updateStudentHostel(User user) {
+    public ResponseData updateStudentHostel(User user) {
         HostelExample hostelExample = new HostelExample();
         //找到所有住人数小于4的宿舍并排序再获取人数最多的（少）的宿舍
         hostelExample.createCriteria().andCountLessThan(4);
@@ -77,16 +79,16 @@ public class StudentViewService {
 
         //如果没有空余宿舍就返回-3
         if (hostels.isEmpty()) {
-            return -1;
+            return new ResponseData("000005","没有空宿舍了");
         }
         Hostel newHostel = hostels.get(0);
         if (user==null){
-            return -2;
+            return new ResponseData(ExceptionMsg.ParamError);
         }
         Long hostelId = user.getHostel();
         Hostel oldHostel = hostelMapper.selectByPrimaryKey(hostelId);
         if (oldHostel==null){
-            return -3;
+            return new ResponseData("000005","旧宿舍不存在");
         }
         oldHostel.setCount(oldHostel.getCount() - 1);
         //更新用户类宿舍号
@@ -97,7 +99,10 @@ public class StudentViewService {
         int i = hostelMapper.updateByPrimaryKey(newHostel);
 
         hostelMapper.updateByPrimaryKey(oldHostel);
-        return i;
+        if (i>0){
+            return new ResponseData(ExceptionMsg.SUCCESS);
+        }
+        return new ResponseData(ExceptionMsg.FAILED);
     }
 
     private StudentView getStudentViewByUserName(User user) {
@@ -109,8 +114,13 @@ public class StudentViewService {
         studentView.setStatus(user.getStatus());
         Hostel hostel = hostelMapper.selectByPrimaryKey(user.getHostel());
         ClassInfo classInfo = classInfoMapper.selectByPrimaryKey(user.getClassInfo());
-        studentView.setHostel(hostel.getId());
-        studentView.setClassInfo(classInfo.getId());
+
+        if(hostel!=null){
+            studentView.setHostel(hostel.getId());
+        }
+        if (classInfo!=null){
+            studentView.setClassInfo(classInfo.getId());
+        }
         return studentView;
     }
 

@@ -164,76 +164,6 @@ public class ClassInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andSpecialityIsNull() {
-            addCriterion("speciality is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpecialityIsNotNull() {
-            addCriterion("speciality is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpecialityEqualTo(String value) {
-            addCriterion("speciality =", value, "speciality");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpecialityNotEqualTo(String value) {
-            addCriterion("speciality <>", value, "speciality");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpecialityGreaterThan(String value) {
-            addCriterion("speciality >", value, "speciality");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpecialityGreaterThanOrEqualTo(String value) {
-            addCriterion("speciality >=", value, "speciality");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpecialityLessThan(String value) {
-            addCriterion("speciality <", value, "speciality");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpecialityLessThanOrEqualTo(String value) {
-            addCriterion("speciality <=", value, "speciality");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpecialityLike(String value) {
-            addCriterion("speciality like", value, "speciality");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpecialityNotLike(String value) {
-            addCriterion("speciality not like", value, "speciality");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpecialityIn(List<String> values) {
-            addCriterion("speciality in", values, "speciality");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpecialityNotIn(List<String> values) {
-            addCriterion("speciality not in", values, "speciality");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpecialityBetween(String value1, String value2) {
-            addCriterion("speciality between", value1, value2, "speciality");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpecialityNotBetween(String value1, String value2) {
-            addCriterion("speciality not between", value1, value2, "speciality");
-            return (Criteria) this;
-        }
-
         public Criteria andClassesIsNull() {
             addCriterion("classes is null");
             return (Criteria) this;
@@ -371,6 +301,76 @@ public class ClassInfoExample {
 
         public Criteria andGradeNotBetween(String value1, String value2) {
             addCriterion("grade not between", value1, value2, "grade");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityIsNull() {
+            addCriterion("speciality is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityIsNotNull() {
+            addCriterion("speciality is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityEqualTo(String value) {
+            addCriterion("speciality =", value, "speciality");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityNotEqualTo(String value) {
+            addCriterion("speciality <>", value, "speciality");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityGreaterThan(String value) {
+            addCriterion("speciality >", value, "speciality");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityGreaterThanOrEqualTo(String value) {
+            addCriterion("speciality >=", value, "speciality");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityLessThan(String value) {
+            addCriterion("speciality <", value, "speciality");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityLessThanOrEqualTo(String value) {
+            addCriterion("speciality <=", value, "speciality");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityLike(String value) {
+            addCriterion("speciality like", value, "speciality");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityNotLike(String value) {
+            addCriterion("speciality not like", value, "speciality");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityIn(List<String> values) {
+            addCriterion("speciality in", values, "speciality");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityNotIn(List<String> values) {
+            addCriterion("speciality not in", values, "speciality");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityBetween(String value1, String value2) {
+            addCriterion("speciality between", value1, value2, "speciality");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpecialityNotBetween(String value1, String value2) {
+            addCriterion("speciality not between", value1, value2, "speciality");
             return (Criteria) this;
         }
     }

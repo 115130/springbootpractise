@@ -77,11 +77,10 @@ public class HostelService {
         return hostelMapper.selectByExample(hostelExample);
     }
 
-    public int addHostel(Hostel hostel) {
-        if (hostel == null) {
-        //输入的参数是空
-            return -2;
-        }
+    public int addHostel() {
+        Hostel hostel = new Hostel();
+        hostel.setGrade(0.0);
+        hostel.setCount(0);
         hostel.setCreatedDate(new Date());
         int insert = hostelMapper.insert(hostel);
         //添加成功
@@ -114,9 +113,17 @@ public class HostelService {
 
     public int updateHostel(Hostel hostel){
         Long id = hostel.getId();
+        Hostel hostel1 = hostelMapper.selectByPrimaryKey(id);
+        hostel1.setLastModify(new Date());
+        hostel1.setGrade(hostel.getGrade());
+        return hostelMapper.updateByPrimaryKey(hostel1);
+    }
+
+    public int updateHostelByCount(Hostel hostel){
+        Long id = hostel.getId();
         hostel.setLastModify(new Date());
         Hostel hostel1 = hostelMapper.selectByPrimaryKey(id);
-        hostel1.setGrade(hostel.getGrade());
+        hostel1.setCount(hostel.getCount());
         return hostelMapper.updateByPrimaryKey(hostel1);
     }
 

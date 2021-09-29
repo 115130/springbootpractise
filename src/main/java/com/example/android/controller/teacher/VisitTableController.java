@@ -4,13 +4,15 @@ import com.example.android.domain.VisitTable;
 import com.example.android.domain.result.ExceptionMsg;
 import com.example.android.domain.result.ResponseData;
 import com.example.android.service.VisitTableService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
-
+@Slf4j
 @RestController
 @RequestMapping("admin")
 public class VisitTableController {
@@ -42,8 +44,8 @@ public class VisitTableController {
     }
 
     @PostMapping("deleteVisitTable")
-    public ResponseData deleteVisitTable(Long visitTableId) {
-        int i = visitTableService.deleteVisitTable(visitTableId);
+    public ResponseData deleteVisitTable(Long id) {
+        int i = visitTableService.deleteVisitTable(id);
         if (i > 0) {
             return new ResponseData(ExceptionMsg.SUCCESS);
         }

@@ -24,12 +24,12 @@
             <th>修改|删除|打分</th>
         </tr>
         <tr v-for="user in list">
-            <td >{{user.id}}</td>
+            <td>{{user.id}}</td>
             <td>{{user.createdDate}}</td>
             <td>{{user.lastModify}}</td>
             <td>{{user.count}}</td>
             <td>{{user.grade}}</td>
-            <td><a :href="'toEditUser?id='+user.id">修改</a>|<a :href="'admin/deleteHostelById?id='+user.id">删除</a>|
+            <td><a :href="'toEditHostel?id='+user.id">修改</a>|<a v-on:click="deleteHostelById(user.id)">删除</a>|
                 <button v-on:click="getId(user.id)">打分</button>
             </th>
         </tr>
@@ -44,9 +44,23 @@
         data: {
             list: []
         },
-        methods :{
-            getId:function (id){
-                layer.prompt({title: '请输入分数', formType: 1}, function (pass, index) {
+        methods: {
+            deleteHostelById:function (id){
+                $.ajax({
+                    url: 'admin/deleteClassInfoById',
+                    data: {"id": id,},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        layer.msg(data.rspMsg)
+                        setTimeout(function (){
+                            location.href = "toAllHostel"
+                        },200)
+                    },
+                });
+            },
+            getId: function (id) {
+                layer.prompt({title: '请输入分数', formType: 3}, function (pass, index) {
                     layer.close(index);
                     $.ajax({
                         url: 'admin/score',
@@ -55,13 +69,15 @@
                         dataType: 'json',
                         success: function (data) {
                             layer.msg(data.rspMsg)
+                            setTimeout(function (){
+                                location.href = "toAllHostel"
+                            },200)
                         },
                     });
                 });
             }
-    }
-})
-
+        }
+    })
 
 
     $(function () {

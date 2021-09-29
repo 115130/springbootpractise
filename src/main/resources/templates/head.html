@@ -15,7 +15,7 @@
 			<img class="headLogo" th:src="@{img/logLOGO.png}"/>
 		</div>
 		<div class="headR" style="margin-top:40px;">
-			欢迎：<span style="color:#FFF" th:text="${session.user.username}"></span> <a th:href="@{/static/resources/templates/login.html}" target="_top" rel="external">【退出】</a>
+			欢迎：<span style="color:#FFF" th:text="${session.user.username}"></span> <a th:href="@{return}" target="_top" rel="external">【退出】</a>
 		</div>
 	</div>
 </body>

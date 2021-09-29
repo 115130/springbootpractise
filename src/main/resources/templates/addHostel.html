@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link th:href="@{css/haiersoft.css}" rel="stylesheet" type="text/css" media="screen,print"/>
+    <link th:href="@{css/print.css}" rel="stylesheet" type="text/css" media="print"/>
+    <script th:src="@{js/jquery-1.10.1.min.js}"></script>
+    <script th:src="@{js/side.js}" type="text/javascript"></script>
+    <script src="js/layer.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#submit").click(function () {
+                let id = $("#id").val();
+                let count = $("#count").val();
+                $.ajax({
+                    url: "admin/addClassInfo",
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                       layer.msg(data.rspMsg)
+                        setTimeout(function (){
+                            location.href="toAllHostel"
+                        },200)
+                    },
+                });
+            })
+        })
+    </script>
+</head>
+
+<body>
+<!-- Popup -->
+
+<div id="Popup" style="margin-left: 200px;">
+
+    <!-- SubPopup -->
+    <h1>在此生成宿舍</h1><br><br><br>
+    <div id="SubPopup">
+        <button id="submit">>>>点此自动生成宿舍<<<</button>
+    </div>
+    <!-- /Popup -->
+</body>
+</html>

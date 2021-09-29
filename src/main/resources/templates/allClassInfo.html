@@ -7,6 +7,7 @@
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/layer.js"></script>
 </head>
 <body>
 <h2>所有信息</h2>
@@ -25,7 +26,7 @@
             <td >{{user.speciality}}</td>
             <td >{{user.classes}}</td>
             <td >{{user.grade}}</td>
-            <td><a :href="'toEditClassInfo?id='+user.id">修改</a>|<a :href="'admin/deleteClassInfoById?id='+user.id">删除</a></td>
+            <td><a :href="'toEditClassInfo?id='+user.id">修改</a>|<a v-on:click="deleteHostelById(user.id)">删除</a></td>
         </tr>
     </table>
 </div>
@@ -36,6 +37,23 @@
         data: {
             list: []
         },
+        methods:{
+            deleteHostelById:function (id){
+                $.ajax({
+                    url: 'admin/deleteClassInfoById',
+                    data: {"id": id,},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data)
+                        layer.msg(data.rspMsg)
+                        setTimeout(function (){
+                            location.href = "toAllClassInfo"
+                        },200)
+                    },
+                });
+            },
+        }
     })
 
     $(function () {

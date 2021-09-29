@@ -30,12 +30,12 @@ public interface VisitTableMapper {
     int deleteByPrimaryKey(Long id);
 
     @Insert({
-        "insert into visit_table (id, created_date, ",
-        "last_modify, accessed_hostel, ",
-        "accessed_student, phone)",
-        "values (#{id,jdbcType=BIGINT}, #{createdDate,jdbcType=TIMESTAMP}, ",
-        "#{lastModify,jdbcType=TIMESTAMP}, #{accessedHostel,jdbcType=BIGINT}, ",
-        "#{accessedStudent,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR})"
+        "insert into visit_table (id, accessed_hostel, ",
+        "accessed_student, created_date, ",
+        "last_modify, phone)",
+        "values (#{id,jdbcType=BIGINT}, #{accessedHostel,jdbcType=BIGINT}, ",
+        "#{accessedStudent,jdbcType=BIGINT}, #{createdDate,jdbcType=TIMESTAMP}, ",
+        "#{lastModify,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR})"
     })
     int insert(VisitTable record);
 
@@ -45,26 +45,26 @@ public interface VisitTableMapper {
     @SelectProvider(type=VisitTableSqlProvider.class, method="selectByExample")
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="accessed_hostel", property="accessedHostel", jdbcType=JdbcType.BIGINT),
         @Result(column="accessed_student", property="accessedStudent", jdbcType=JdbcType.BIGINT),
+        @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR)
     })
     List<VisitTable> selectByExample(VisitTableExample example);
 
     @Select({
         "select",
-        "id, created_date, last_modify, accessed_hostel, accessed_student, phone",
+        "id, accessed_hostel, accessed_student, created_date, last_modify, phone",
         "from visit_table",
         "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="accessed_hostel", property="accessedHostel", jdbcType=JdbcType.BIGINT),
         @Result(column="accessed_student", property="accessedStudent", jdbcType=JdbcType.BIGINT),
+        @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR)
     })
     VisitTable selectByPrimaryKey(Long id);
@@ -80,10 +80,10 @@ public interface VisitTableMapper {
 
     @Update({
         "update visit_table",
-        "set created_date = #{createdDate,jdbcType=TIMESTAMP},",
-          "last_modify = #{lastModify,jdbcType=TIMESTAMP},",
-          "accessed_hostel = #{accessedHostel,jdbcType=BIGINT},",
+        "set accessed_hostel = #{accessedHostel,jdbcType=BIGINT},",
           "accessed_student = #{accessedStudent,jdbcType=BIGINT},",
+          "created_date = #{createdDate,jdbcType=TIMESTAMP},",
+          "last_modify = #{lastModify,jdbcType=TIMESTAMP},",
           "phone = #{phone,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=BIGINT}"
     })

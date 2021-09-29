@@ -31,20 +31,20 @@ public class VisitTableSqlProvider {
             sql.VALUES("id", "#{id,jdbcType=BIGINT}");
         }
         
-        if (record.getCreatedDate() != null) {
-            sql.VALUES("created_date", "#{createdDate,jdbcType=TIMESTAMP}");
-        }
-        
-        if (record.getLastModify() != null) {
-            sql.VALUES("last_modify", "#{lastModify,jdbcType=TIMESTAMP}");
-        }
-        
         if (record.getAccessedHostel() != null) {
             sql.VALUES("accessed_hostel", "#{accessedHostel,jdbcType=BIGINT}");
         }
         
         if (record.getAccessedStudent() != null) {
             sql.VALUES("accessed_student", "#{accessedStudent,jdbcType=BIGINT}");
+        }
+        
+        if (record.getCreatedDate() != null) {
+            sql.VALUES("created_date", "#{createdDate,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getLastModify() != null) {
+            sql.VALUES("last_modify", "#{lastModify,jdbcType=TIMESTAMP}");
         }
         
         if (record.getPhone() != null) {
@@ -61,10 +61,10 @@ public class VisitTableSqlProvider {
         } else {
             sql.SELECT("id");
         }
-        sql.SELECT("created_date");
-        sql.SELECT("last_modify");
         sql.SELECT("accessed_hostel");
         sql.SELECT("accessed_student");
+        sql.SELECT("created_date");
+        sql.SELECT("last_modify");
         sql.SELECT("phone");
         sql.FROM("visit_table");
         applyWhere(sql, example, false);
@@ -87,20 +87,20 @@ public class VisitTableSqlProvider {
             sql.SET("id = #{record.id,jdbcType=BIGINT}");
         }
         
-        if (record.getCreatedDate() != null) {
-            sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
-        }
-        
-        if (record.getLastModify() != null) {
-            sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
-        }
-        
         if (record.getAccessedHostel() != null) {
             sql.SET("accessed_hostel = #{record.accessedHostel,jdbcType=BIGINT}");
         }
         
         if (record.getAccessedStudent() != null) {
             sql.SET("accessed_student = #{record.accessedStudent,jdbcType=BIGINT}");
+        }
+        
+        if (record.getCreatedDate() != null) {
+            sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getLastModify() != null) {
+            sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
         }
         
         if (record.getPhone() != null) {
@@ -116,10 +116,10 @@ public class VisitTableSqlProvider {
         sql.UPDATE("visit_table");
         
         sql.SET("id = #{record.id,jdbcType=BIGINT}");
-        sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
-        sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
         sql.SET("accessed_hostel = #{record.accessedHostel,jdbcType=BIGINT}");
         sql.SET("accessed_student = #{record.accessedStudent,jdbcType=BIGINT}");
+        sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
+        sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
         sql.SET("phone = #{record.phone,jdbcType=VARCHAR}");
         
         VisitTableExample example = (VisitTableExample) parameter.get("example");
@@ -131,20 +131,20 @@ public class VisitTableSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("visit_table");
         
-        if (record.getCreatedDate() != null) {
-            sql.SET("created_date = #{createdDate,jdbcType=TIMESTAMP}");
-        }
-        
-        if (record.getLastModify() != null) {
-            sql.SET("last_modify = #{lastModify,jdbcType=TIMESTAMP}");
-        }
-        
         if (record.getAccessedHostel() != null) {
             sql.SET("accessed_hostel = #{accessedHostel,jdbcType=BIGINT}");
         }
         
         if (record.getAccessedStudent() != null) {
             sql.SET("accessed_student = #{accessedStudent,jdbcType=BIGINT}");
+        }
+        
+        if (record.getCreatedDate() != null) {
+            sql.SET("created_date = #{createdDate,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getLastModify() != null) {
+            sql.SET("last_modify = #{lastModify,jdbcType=TIMESTAMP}");
         }
         
         if (record.getPhone() != null) {

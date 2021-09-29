@@ -25,7 +25,8 @@ public class VisitTableService {
         return visitTableMapper.insert(visitTable);
     }
 
-    public int updateVisitTable(VisitTable visitTable){
+    public int updateVisitTable(VisitTable visitTable1){
+        VisitTable visitTable = visitTableMapper.selectByPrimaryKey(visitTable1.getId());
         visitTable.setLastModify(new Date());
         return visitTableMapper.updateByPrimaryKey(visitTable);
     }

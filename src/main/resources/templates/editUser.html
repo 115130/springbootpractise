@@ -8,7 +8,8 @@
     <link th:href="@{css/print.css}" rel="stylesheet" type="text/css" media="print"/>
     <script th:src="@{js/jquery-1.10.1.min.js}"></script>
     <script th:src="@{js/side.js}" type="text/javascript"></script>
-
+    <script th:src="@{js/layer.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script type="text/javascript">
         $(function () {
             $("#submit").click(function () {
@@ -23,7 +24,10 @@
                     type:"POST",
                     dataType:"json",
                     success:function (data) {
-                        alert(data.rspMsg)
+                        layer.msg(data.rspMsg)
+                        setTimeout(function (){
+                            location.href="allStudent.html";
+                        },200)
                     },
                 });
             })
@@ -40,7 +44,7 @@
     <div id="SubPopup">
         <form th:action="@{/updateUser}" method="post">
         <input type="hidden" id="id" th:value="${id}">
-        <div class="form_boxC">
+        <div class="form_boxC" id="table">
             <p>"<span class="f_cB">*</span>"号为必填项目</p>
             <table cellpadding="0" cellspacing="0">
                 <tr>
@@ -55,7 +59,7 @@
                     <th>密码：<span class="f_cB">*</span></th>
                     <td>
                         <div class="txtbox floatL" style="width:200px;">
-                            <input id="password" name="password" type="password"  placeholder="请输入密码">
+                            <input id="password" name="password" type="text"  placeholder="请输入密码">
                         </div>
                     </td>
                 </tr>
@@ -97,6 +101,13 @@
 
     </div>
 </div>
-<!-- /Popup -->
+    <script>
+        new Vue({
+            el: "#table",
+            data: {obj:null}
+        })
+    </script>
+
+    <!-- /Popup -->
 </body>
 </html>

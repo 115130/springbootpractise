@@ -30,12 +30,12 @@ public interface HostelMapper {
     int deleteByPrimaryKey(Long id);
 
     @Insert({
-        "insert into hostel (id, created_date, ",
-        "last_modify, count, ",
-        "grade, remain)",
-        "values (#{id,jdbcType=BIGINT}, #{createdDate,jdbcType=TIMESTAMP}, ",
-        "#{lastModify,jdbcType=TIMESTAMP}, #{count,jdbcType=INTEGER}, ",
-        "#{grade,jdbcType=DOUBLE}, #{remain,jdbcType=INTEGER})"
+        "insert into hostel (id, count, ",
+        "created_date, grade, ",
+        "last_modify, remain)",
+        "values (#{id,jdbcType=BIGINT}, #{count,jdbcType=INTEGER}, ",
+        "#{createdDate,jdbcType=TIMESTAMP}, #{grade,jdbcType=DOUBLE}, ",
+        "#{lastModify,jdbcType=TIMESTAMP}, #{remain,jdbcType=INTEGER})"
     })
     int insert(Hostel record);
 
@@ -45,26 +45,26 @@ public interface HostelMapper {
     @SelectProvider(type=HostelSqlProvider.class, method="selectByExample")
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="count", property="count", jdbcType=JdbcType.INTEGER),
+        @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="grade", property="grade", jdbcType=JdbcType.DOUBLE),
+        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="remain", property="remain", jdbcType=JdbcType.INTEGER)
     })
     List<Hostel> selectByExample(HostelExample example);
 
     @Select({
         "select",
-        "id, created_date, last_modify, count, grade, remain",
+        "id, count, created_date, grade, last_modify, remain",
         "from hostel",
         "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="count", property="count", jdbcType=JdbcType.INTEGER),
+        @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="grade", property="grade", jdbcType=JdbcType.DOUBLE),
+        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="remain", property="remain", jdbcType=JdbcType.INTEGER)
     })
     Hostel selectByPrimaryKey(Long id);
@@ -80,14 +80,12 @@ public interface HostelMapper {
 
     @Update({
         "update hostel",
-        "set created_date = #{createdDate,jdbcType=TIMESTAMP},",
-          "last_modify = #{lastModify,jdbcType=TIMESTAMP},",
-          "count = #{count,jdbcType=INTEGER},",
+        "set count = #{count,jdbcType=INTEGER},",
+          "created_date = #{createdDate,jdbcType=TIMESTAMP},",
           "grade = #{grade,jdbcType=DOUBLE},",
+          "last_modify = #{lastModify,jdbcType=TIMESTAMP},",
           "remain = #{remain,jdbcType=INTEGER}",
         "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(Hostel record);
-
-
 }

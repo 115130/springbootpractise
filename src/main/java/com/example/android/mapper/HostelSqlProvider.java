@@ -31,20 +31,20 @@ public class HostelSqlProvider {
             sql.VALUES("id", "#{id,jdbcType=BIGINT}");
         }
         
-        if (record.getCreatedDate() != null) {
-            sql.VALUES("created_date", "#{createdDate,jdbcType=TIMESTAMP}");
-        }
-        
-        if (record.getLastModify() != null) {
-            sql.VALUES("last_modify", "#{lastModify,jdbcType=TIMESTAMP}");
-        }
-        
         if (record.getCount() != null) {
             sql.VALUES("count", "#{count,jdbcType=INTEGER}");
         }
         
+        if (record.getCreatedDate() != null) {
+            sql.VALUES("created_date", "#{createdDate,jdbcType=TIMESTAMP}");
+        }
+        
         if (record.getGrade() != null) {
             sql.VALUES("grade", "#{grade,jdbcType=DOUBLE}");
+        }
+        
+        if (record.getLastModify() != null) {
+            sql.VALUES("last_modify", "#{lastModify,jdbcType=TIMESTAMP}");
         }
         
         if (record.getRemain() != null) {
@@ -61,10 +61,10 @@ public class HostelSqlProvider {
         } else {
             sql.SELECT("id");
         }
-        sql.SELECT("created_date");
-        sql.SELECT("last_modify");
         sql.SELECT("count");
+        sql.SELECT("created_date");
         sql.SELECT("grade");
+        sql.SELECT("last_modify");
         sql.SELECT("remain");
         sql.FROM("hostel");
         applyWhere(sql, example, false);
@@ -87,20 +87,20 @@ public class HostelSqlProvider {
             sql.SET("id = #{record.id,jdbcType=BIGINT}");
         }
         
-        if (record.getCreatedDate() != null) {
-            sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
-        }
-        
-        if (record.getLastModify() != null) {
-            sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
-        }
-        
         if (record.getCount() != null) {
             sql.SET("count = #{record.count,jdbcType=INTEGER}");
         }
         
+        if (record.getCreatedDate() != null) {
+            sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
+        }
+        
         if (record.getGrade() != null) {
             sql.SET("grade = #{record.grade,jdbcType=DOUBLE}");
+        }
+        
+        if (record.getLastModify() != null) {
+            sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
         }
         
         if (record.getRemain() != null) {
@@ -116,10 +116,10 @@ public class HostelSqlProvider {
         sql.UPDATE("hostel");
         
         sql.SET("id = #{record.id,jdbcType=BIGINT}");
-        sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
-        sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
         sql.SET("count = #{record.count,jdbcType=INTEGER}");
+        sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
         sql.SET("grade = #{record.grade,jdbcType=DOUBLE}");
+        sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
         sql.SET("remain = #{record.remain,jdbcType=INTEGER}");
         
         HostelExample example = (HostelExample) parameter.get("example");
@@ -131,20 +131,20 @@ public class HostelSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("hostel");
         
-        if (record.getCreatedDate() != null) {
-            sql.SET("created_date = #{createdDate,jdbcType=TIMESTAMP}");
-        }
-        
-        if (record.getLastModify() != null) {
-            sql.SET("last_modify = #{lastModify,jdbcType=TIMESTAMP}");
-        }
-        
         if (record.getCount() != null) {
             sql.SET("count = #{count,jdbcType=INTEGER}");
         }
         
+        if (record.getCreatedDate() != null) {
+            sql.SET("created_date = #{createdDate,jdbcType=TIMESTAMP}");
+        }
+        
         if (record.getGrade() != null) {
             sql.SET("grade = #{grade,jdbcType=DOUBLE}");
+        }
+        
+        if (record.getLastModify() != null) {
+            sql.SET("last_modify = #{lastModify,jdbcType=TIMESTAMP}");
         }
         
         if (record.getRemain() != null) {

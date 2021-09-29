@@ -225,66 +225,6 @@ public class LateReturnTableExample {
             return (Criteria) this;
         }
 
-        public Criteria andLastModifyIsNull() {
-            addCriterion("last_modify is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyIsNotNull() {
-            addCriterion("last_modify is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyEqualTo(Date value) {
-            addCriterion("last_modify =", value, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyNotEqualTo(Date value) {
-            addCriterion("last_modify <>", value, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyGreaterThan(Date value) {
-            addCriterion("last_modify >", value, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyGreaterThanOrEqualTo(Date value) {
-            addCriterion("last_modify >=", value, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyLessThan(Date value) {
-            addCriterion("last_modify <", value, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyLessThanOrEqualTo(Date value) {
-            addCriterion("last_modify <=", value, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyIn(List<Date> values) {
-            addCriterion("last_modify in", values, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyNotIn(List<Date> values) {
-            addCriterion("last_modify not in", values, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyBetween(Date value1, Date value2) {
-            addCriterion("last_modify between", value1, value2, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyNotBetween(Date value1, Date value2) {
-            addCriterion("last_modify not between", value1, value2, "lastModify");
-            return (Criteria) this;
-        }
-
         public Criteria andHostelIsNull() {
             addCriterion("hostel is null");
             return (Criteria) this;
@@ -342,6 +282,66 @@ public class LateReturnTableExample {
 
         public Criteria andHostelNotBetween(Long value1, Long value2) {
             addCriterion("hostel not between", value1, value2, "hostel");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyIsNull() {
+            addCriterion("last_modify is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyIsNotNull() {
+            addCriterion("last_modify is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyEqualTo(Date value) {
+            addCriterion("last_modify =", value, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyNotEqualTo(Date value) {
+            addCriterion("last_modify <>", value, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyGreaterThan(Date value) {
+            addCriterion("last_modify >", value, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyGreaterThanOrEqualTo(Date value) {
+            addCriterion("last_modify >=", value, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyLessThan(Date value) {
+            addCriterion("last_modify <", value, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyLessThanOrEqualTo(Date value) {
+            addCriterion("last_modify <=", value, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyIn(List<Date> values) {
+            addCriterion("last_modify in", values, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyNotIn(List<Date> values) {
+            addCriterion("last_modify not in", values, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyBetween(Date value1, Date value2) {
+            addCriterion("last_modify between", value1, value2, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyNotBetween(Date value1, Date value2) {
+            addCriterion("last_modify not between", value1, value2, "lastModify");
             return (Criteria) this;
         }
 

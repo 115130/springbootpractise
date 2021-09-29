@@ -12,11 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "admin", method = RequestMethod.POST)
+@RequestMapping(value = "admin")
 public class UserController {
     @Resource
     StudentViewService studentViewService;
@@ -56,23 +57,20 @@ public class UserController {
     }
 
     @PostMapping("updateStudent")
-    public ResponseData updateStudentClassInfo(User user) {
-        User user1 = studentViewService.selectUserByUserId(user.getId());
-        user1.setUsername(user.getUsername());
-        user1.setPassword(EncryptUtil.encrypt(user.getPassword()));
-        user1.setClassInfo(user.getClassInfo());
-        user1.setHostel(user.getHostel());
-        int c = studentViewService.updateStudentHostel(user1);
-        int i1 = studentViewService.updateUserNameAndPassword(user1);
-        log.error(user.toString());
-        log.error(String.valueOf(i1));
-        if ((i1|c)>0) {
+    public ResponseData updateStudentClassInfo(User user1) {
+        User user = studentViewService.selectUserByUserId(user1.getId());
+        user.setUsername(user1.getUsername());
+        user.setPassword(EncryptUtil.encrypt(user1.getPassword()));
+        user.setClassInfo(user1.getClassInfo());
+        user.setHostel(user1.getHostel());
+        ResponseData responseData = studentViewService.updateStudentHostel(user);
+        if (!responseData.getRspCode().equals("000000")){
+            return responseData;
+        }
+        int i1 = studentViewService.updateUserNameAndPassword(user);
+        if ((i1)>0) {
             return new ResponseData(ExceptionMsg.SUCCESS);
         }
         return new ResponseData(ExceptionMsg.FAILED);
     }
-
-
-
-
 }

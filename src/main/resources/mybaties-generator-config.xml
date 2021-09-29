@@ -58,11 +58,6 @@
         <table  tableName="late_return_table" domainObjectName="LateReturnTable" />
         <table  tableName="user" domainObjectName="User" />
         <table  tableName="visit_table" domainObjectName="VisitTable" />
-<!--            <property name="useActualColumnNames" value="true"/>-->
-<!--            <generatedKey column="ID" sqlStatement="DB2" identity="true" />-->
-<!--            <columnOverride column="DATE_FIELD" property="startDate" />-->
-<!--            <ignoreColumn column="FRED" />-->
-<!--            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />-->
 
     </context>
 </generatorConfiguration>

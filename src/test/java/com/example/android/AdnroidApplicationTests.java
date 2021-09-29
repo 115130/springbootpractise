@@ -1,7 +1,10 @@
 package com.example.android;
 
+import com.example.android.domain.ClassInfoExample;
 import com.example.android.domain.User;
 import com.example.android.domain.UserExample;
+import com.example.android.mapper.ClassInfoMapper;
+import com.example.android.mapper.LateReturnTableMapper;
 import com.example.android.mapper.UserMapper;
 import com.example.android.service.ClassInfoService;
 import com.example.android.service.UserService;
@@ -91,6 +94,20 @@ class AdnroidApplicationTests {
     @Test
     void c(){
         System.out.println(classInfoService.findClassViewByStudentNumber("201710244104"));
+    }
+
+    @Resource
+    LateReturnTableMapper mapper;
+    @Test
+    void c1(){
+//        ClassInfoExample classInfoExample = new ClassInfoExample();
+//        classInfoExample.createCriteria().andClassesEqualTo("c");
+//        System.out.println(mapper.selectByPrimaryKey(1L));
+//            if (==null){
+//                throw new RuntimeException();
+//            }
+          System.out.println(mapper.selectByPrimaryKey(3L));
+//        System.out.println(mapper.selectByExample(classInfoExample));
     }
 
 }

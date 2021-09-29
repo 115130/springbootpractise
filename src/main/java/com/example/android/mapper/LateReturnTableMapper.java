@@ -31,10 +31,10 @@ public interface LateReturnTableMapper {
 
     @Insert({
         "insert into late_return_table (id, created_date, ",
-        "last_modify, hostel, ",
+        "hostel, last_modify, ",
         "student_id)",
         "values (#{id,jdbcType=BIGINT}, #{createdDate,jdbcType=TIMESTAMP}, ",
-        "#{lastModify,jdbcType=TIMESTAMP}, #{hostel,jdbcType=BIGINT}, ",
+        "#{hostel,jdbcType=BIGINT}, #{lastModify,jdbcType=TIMESTAMP}, ",
         "#{studentId,jdbcType=BIGINT})"
     })
     int insert(LateReturnTable record);
@@ -46,23 +46,23 @@ public interface LateReturnTableMapper {
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
         @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="hostel", property="hostel", jdbcType=JdbcType.BIGINT),
+        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="student_id", property="studentId", jdbcType=JdbcType.BIGINT)
     })
     List<LateReturnTable> selectByExample(LateReturnTableExample example);
 
     @Select({
         "select",
-        "id, created_date, last_modify, hostel, student_id",
+        "id, created_date, hostel, last_modify, student_id",
         "from late_return_table",
         "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
         @Result(column="created_date", property="createdDate", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="hostel", property="hostel", jdbcType=JdbcType.BIGINT),
+        @Result(column="last_modify", property="lastModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="student_id", property="studentId", jdbcType=JdbcType.BIGINT)
     })
     LateReturnTable selectByPrimaryKey(Long id);
@@ -79,8 +79,8 @@ public interface LateReturnTableMapper {
     @Update({
         "update late_return_table",
         "set created_date = #{createdDate,jdbcType=TIMESTAMP},",
-          "last_modify = #{lastModify,jdbcType=TIMESTAMP},",
           "hostel = #{hostel,jdbcType=BIGINT},",
+          "last_modify = #{lastModify,jdbcType=TIMESTAMP},",
           "student_id = #{studentId,jdbcType=BIGINT}",
         "where id = #{id,jdbcType=BIGINT}"
     })

@@ -4,6 +4,8 @@ import com.example.android.domain.LateReturnTable;
 import com.example.android.domain.result.ExceptionMsg;
 import com.example.android.domain.result.ResponseData;
 import com.example.android.service.LateReturnTableService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("admin")
 public class LateReturnTableController {
@@ -18,8 +21,8 @@ public class LateReturnTableController {
     LateReturnTableService lateReturnTableService;
 
     @PostMapping("addLateReturnTable")
-    public ResponseData addLateReturnTable(LateReturnTable lateReturnTable) {
-        int i = lateReturnTableService.addLateReturnTable(lateReturnTable);
+    public ResponseData addLateReturnTable(Long hostel,Long studentId) {
+        int i = lateReturnTableService.addLateReturnTable(hostel,studentId);
         if (i > 0) {
             return new ResponseData(ExceptionMsg.SUCCESS);
         }
@@ -60,8 +63,8 @@ public class LateReturnTableController {
     }
 
     @PostMapping("deleteLateReturnTableByLateReturnTableId")
-    public ResponseData deleteLateReturnTableByLateReturnTableId(Long lateReturnTableId) {
-        int i = lateReturnTableService.deleteLateReturnTableByLateReturnTableId(lateReturnTableId);
+    public ResponseData deleteLateReturnTableByLateReturnTableId(Long id) {
+        int i = lateReturnTableService.deleteLateReturnTableByLateReturnTableId(id);
         if (i > 0) {
             return new ResponseData(ExceptionMsg.SUCCESS);
         }

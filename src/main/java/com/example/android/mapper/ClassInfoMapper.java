@@ -30,10 +30,10 @@ public interface ClassInfoMapper {
     int deleteByPrimaryKey(Long id);
 
     @Insert({
-        "insert into class_info (id, speciality, ",
-        "classes, grade)",
-        "values (#{id,jdbcType=BIGINT}, #{speciality,jdbcType=VARCHAR}, ",
-        "#{classes,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR})"
+        "insert into class_info (id, classes, ",
+        "grade, speciality)",
+        "values (#{id,jdbcType=BIGINT}, #{classes,jdbcType=VARCHAR}, ",
+        "#{grade,jdbcType=VARCHAR}, #{speciality,jdbcType=VARCHAR})"
     })
     int insert(ClassInfo record);
 
@@ -43,23 +43,23 @@ public interface ClassInfoMapper {
     @SelectProvider(type=ClassInfoSqlProvider.class, method="selectByExample")
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="speciality", property="speciality", jdbcType=JdbcType.VARCHAR),
         @Result(column="classes", property="classes", jdbcType=JdbcType.VARCHAR),
-        @Result(column="grade", property="grade", jdbcType=JdbcType.VARCHAR)
+        @Result(column="grade", property="grade", jdbcType=JdbcType.VARCHAR),
+        @Result(column="speciality", property="speciality", jdbcType=JdbcType.VARCHAR)
     })
     List<ClassInfo> selectByExample(ClassInfoExample example);
 
     @Select({
         "select",
-        "id, speciality, classes, grade",
+        "id, classes, grade, speciality",
         "from class_info",
         "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="speciality", property="speciality", jdbcType=JdbcType.VARCHAR),
+        @Result(column="id", property="id", jdbcType=JdbcType.BIGINT,id = true),
         @Result(column="classes", property="classes", jdbcType=JdbcType.VARCHAR),
-        @Result(column="grade", property="grade", jdbcType=JdbcType.VARCHAR)
+        @Result(column="grade", property="grade", jdbcType=JdbcType.VARCHAR),
+        @Result(column="speciality", property="speciality", jdbcType=JdbcType.VARCHAR)
     })
     ClassInfo selectByPrimaryKey(Long id);
 
@@ -74,9 +74,9 @@ public interface ClassInfoMapper {
 
     @Update({
         "update class_info",
-        "set speciality = #{speciality,jdbcType=VARCHAR},",
-          "classes = #{classes,jdbcType=VARCHAR},",
-          "grade = #{grade,jdbcType=VARCHAR}",
+        "set classes = #{classes,jdbcType=VARCHAR},",
+          "grade = #{grade,jdbcType=VARCHAR},",
+          "speciality = #{speciality,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(ClassInfo record);

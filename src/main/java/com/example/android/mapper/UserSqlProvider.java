@@ -31,6 +31,10 @@ public class UserSqlProvider {
             sql.VALUES("id", "#{id,jdbcType=BIGINT}");
         }
         
+        if (record.getStudentNumber() != null) {
+            sql.VALUES("student_number", "#{studentNumber,jdbcType=VARCHAR}");
+        }
+        
         if (record.getUsername() != null) {
             sql.VALUES("username", "#{username,jdbcType=VARCHAR}");
         }
@@ -39,32 +43,28 @@ public class UserSqlProvider {
             sql.VALUES("password", "#{password,jdbcType=VARCHAR}");
         }
         
-        if (record.getStatus() != null) {
-            sql.VALUES("status", "#{status,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getCreatedDate() != null) {
-            sql.VALUES("created_date", "#{createdDate,jdbcType=TIMESTAMP}");
-        }
-        
-        if (record.getLastModify() != null) {
-            sql.VALUES("last_modify", "#{lastModify,jdbcType=TIMESTAMP}");
+        if (record.getAdmin() != null) {
+            sql.VALUES("admin", "#{admin,jdbcType=INTEGER}");
         }
         
         if (record.getClassInfo() != null) {
             sql.VALUES("class_info", "#{classInfo,jdbcType=BIGINT}");
         }
         
+        if (record.getCreatedDate() != null) {
+            sql.VALUES("created_date", "#{createdDate,jdbcType=TIMESTAMP}");
+        }
+        
         if (record.getHostel() != null) {
             sql.VALUES("hostel", "#{hostel,jdbcType=BIGINT}");
         }
         
-        if (record.getStudentNumber() != null) {
-            sql.VALUES("student_number", "#{studentNumber,jdbcType=VARCHAR}");
+        if (record.getLastModify() != null) {
+            sql.VALUES("last_modify", "#{lastModify,jdbcType=TIMESTAMP}");
         }
         
-        if (record.getAdmin() != null) {
-            sql.VALUES("admin", "#{admin,jdbcType=INTEGER}");
+        if (record.getStatus() != null) {
+            sql.VALUES("status", "#{status,jdbcType=VARCHAR}");
         }
         
         return sql.toString();
@@ -77,15 +77,15 @@ public class UserSqlProvider {
         } else {
             sql.SELECT("id");
         }
+        sql.SELECT("student_number");
         sql.SELECT("username");
         sql.SELECT("password");
-        sql.SELECT("status");
-        sql.SELECT("created_date");
-        sql.SELECT("last_modify");
-        sql.SELECT("class_info");
-        sql.SELECT("hostel");
-        sql.SELECT("student_number");
         sql.SELECT("admin");
+        sql.SELECT("class_info");
+        sql.SELECT("created_date");
+        sql.SELECT("hostel");
+        sql.SELECT("last_modify");
+        sql.SELECT("status");
         sql.FROM("user");
         applyWhere(sql, example, false);
         
@@ -107,6 +107,10 @@ public class UserSqlProvider {
             sql.SET("id = #{record.id,jdbcType=BIGINT}");
         }
         
+        if (record.getStudentNumber() != null) {
+            sql.SET("student_number = #{record.studentNumber,jdbcType=VARCHAR}");
+        }
+        
         if (record.getUsername() != null) {
             sql.SET("username = #{record.username,jdbcType=VARCHAR}");
         }
@@ -115,32 +119,28 @@ public class UserSqlProvider {
             sql.SET("password = #{record.password,jdbcType=VARCHAR}");
         }
         
-        if (record.getStatus() != null) {
-            sql.SET("status = #{record.status,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getCreatedDate() != null) {
-            sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
-        }
-        
-        if (record.getLastModify() != null) {
-            sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
+        if (record.getAdmin() != null) {
+            sql.SET("admin = #{record.admin,jdbcType=INTEGER}");
         }
         
         if (record.getClassInfo() != null) {
             sql.SET("class_info = #{record.classInfo,jdbcType=BIGINT}");
         }
         
+        if (record.getCreatedDate() != null) {
+            sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
+        }
+        
         if (record.getHostel() != null) {
             sql.SET("hostel = #{record.hostel,jdbcType=BIGINT}");
         }
         
-        if (record.getStudentNumber() != null) {
-            sql.SET("student_number = #{record.studentNumber,jdbcType=VARCHAR}");
+        if (record.getLastModify() != null) {
+            sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
         }
         
-        if (record.getAdmin() != null) {
-            sql.SET("admin = #{record.admin,jdbcType=INTEGER}");
+        if (record.getStatus() != null) {
+            sql.SET("status = #{record.status,jdbcType=VARCHAR}");
         }
         
         applyWhere(sql, example, true);
@@ -152,15 +152,15 @@ public class UserSqlProvider {
         sql.UPDATE("user");
         
         sql.SET("id = #{record.id,jdbcType=BIGINT}");
+        sql.SET("student_number = #{record.studentNumber,jdbcType=VARCHAR}");
         sql.SET("username = #{record.username,jdbcType=VARCHAR}");
         sql.SET("password = #{record.password,jdbcType=VARCHAR}");
-        sql.SET("status = #{record.status,jdbcType=VARCHAR}");
-        sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
-        sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
-        sql.SET("class_info = #{record.classInfo,jdbcType=BIGINT}");
-        sql.SET("hostel = #{record.hostel,jdbcType=BIGINT}");
-        sql.SET("student_number = #{record.studentNumber,jdbcType=VARCHAR}");
         sql.SET("admin = #{record.admin,jdbcType=INTEGER}");
+        sql.SET("class_info = #{record.classInfo,jdbcType=BIGINT}");
+        sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
+        sql.SET("hostel = #{record.hostel,jdbcType=BIGINT}");
+        sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
+        sql.SET("status = #{record.status,jdbcType=VARCHAR}");
         
         UserExample example = (UserExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -171,6 +171,10 @@ public class UserSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("user");
         
+        if (record.getStudentNumber() != null) {
+            sql.SET("student_number = #{studentNumber,jdbcType=VARCHAR}");
+        }
+        
         if (record.getUsername() != null) {
             sql.SET("username = #{username,jdbcType=VARCHAR}");
         }
@@ -179,32 +183,28 @@ public class UserSqlProvider {
             sql.SET("password = #{password,jdbcType=VARCHAR}");
         }
         
-        if (record.getStatus() != null) {
-            sql.SET("status = #{status,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getCreatedDate() != null) {
-            sql.SET("created_date = #{createdDate,jdbcType=TIMESTAMP}");
-        }
-        
-        if (record.getLastModify() != null) {
-            sql.SET("last_modify = #{lastModify,jdbcType=TIMESTAMP}");
+        if (record.getAdmin() != null) {
+            sql.SET("admin = #{admin,jdbcType=INTEGER}");
         }
         
         if (record.getClassInfo() != null) {
             sql.SET("class_info = #{classInfo,jdbcType=BIGINT}");
         }
         
+        if (record.getCreatedDate() != null) {
+            sql.SET("created_date = #{createdDate,jdbcType=TIMESTAMP}");
+        }
+        
         if (record.getHostel() != null) {
             sql.SET("hostel = #{hostel,jdbcType=BIGINT}");
         }
         
-        if (record.getStudentNumber() != null) {
-            sql.SET("student_number = #{studentNumber,jdbcType=VARCHAR}");
+        if (record.getLastModify() != null) {
+            sql.SET("last_modify = #{lastModify,jdbcType=TIMESTAMP}");
         }
         
-        if (record.getAdmin() != null) {
-            sql.SET("admin = #{admin,jdbcType=INTEGER}");
+        if (record.getStatus() != null) {
+            sql.SET("status = #{status,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=BIGINT}");

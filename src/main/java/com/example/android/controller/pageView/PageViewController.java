@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Slf4j
@@ -136,6 +137,32 @@ public class PageViewController {
     public String toEditLateReturn(Long id, HttpServletRequest request) {
         request.setAttribute("id", id);
         return "editLateReturn";
+    }
+
+    @GetMapping("toAddHostel")
+    public String toAddHostel() {
+        return "addHostel";
+    }
+
+    @GetMapping("toAddClassInfo")
+    public String toAddClassInfo() {
+        return "addClassInfo";
+    }
+
+    @GetMapping("toAddLateReturn")
+    public String toAddLateReturn() {
+        return "addLateReturn";
+    }
+
+    @GetMapping("toAddVisit")
+    public String toAddVisit() {
+        return "addVisit";
+    }
+
+    @GetMapping("return")
+    public String return1(HttpSession session) {
+        session.removeAttribute("user");
+        return "login";
     }
 
 

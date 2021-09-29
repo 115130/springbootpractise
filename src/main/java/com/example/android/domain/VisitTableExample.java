@@ -165,126 +165,6 @@ public class VisitTableExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatedDateIsNull() {
-            addCriterion("created_date is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedDateIsNotNull() {
-            addCriterion("created_date is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedDateEqualTo(Date value) {
-            addCriterion("created_date =", value, "createdDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedDateNotEqualTo(Date value) {
-            addCriterion("created_date <>", value, "createdDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedDateGreaterThan(Date value) {
-            addCriterion("created_date >", value, "createdDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedDateGreaterThanOrEqualTo(Date value) {
-            addCriterion("created_date >=", value, "createdDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedDateLessThan(Date value) {
-            addCriterion("created_date <", value, "createdDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedDateLessThanOrEqualTo(Date value) {
-            addCriterion("created_date <=", value, "createdDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedDateIn(List<Date> values) {
-            addCriterion("created_date in", values, "createdDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedDateNotIn(List<Date> values) {
-            addCriterion("created_date not in", values, "createdDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedDateBetween(Date value1, Date value2) {
-            addCriterion("created_date between", value1, value2, "createdDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedDateNotBetween(Date value1, Date value2) {
-            addCriterion("created_date not between", value1, value2, "createdDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyIsNull() {
-            addCriterion("last_modify is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyIsNotNull() {
-            addCriterion("last_modify is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyEqualTo(Date value) {
-            addCriterion("last_modify =", value, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyNotEqualTo(Date value) {
-            addCriterion("last_modify <>", value, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyGreaterThan(Date value) {
-            addCriterion("last_modify >", value, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyGreaterThanOrEqualTo(Date value) {
-            addCriterion("last_modify >=", value, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyLessThan(Date value) {
-            addCriterion("last_modify <", value, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyLessThanOrEqualTo(Date value) {
-            addCriterion("last_modify <=", value, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyIn(List<Date> values) {
-            addCriterion("last_modify in", values, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyNotIn(List<Date> values) {
-            addCriterion("last_modify not in", values, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyBetween(Date value1, Date value2) {
-            addCriterion("last_modify between", value1, value2, "lastModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifyNotBetween(Date value1, Date value2) {
-            addCriterion("last_modify not between", value1, value2, "lastModify");
-            return (Criteria) this;
-        }
-
         public Criteria andAccessedHostelIsNull() {
             addCriterion("accessed_hostel is null");
             return (Criteria) this;
@@ -402,6 +282,126 @@ public class VisitTableExample {
 
         public Criteria andAccessedStudentNotBetween(Long value1, Long value2) {
             addCriterion("accessed_student not between", value1, value2, "accessedStudent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateIsNull() {
+            addCriterion("created_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateIsNotNull() {
+            addCriterion("created_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateEqualTo(Date value) {
+            addCriterion("created_date =", value, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateNotEqualTo(Date value) {
+            addCriterion("created_date <>", value, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateGreaterThan(Date value) {
+            addCriterion("created_date >", value, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("created_date >=", value, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateLessThan(Date value) {
+            addCriterion("created_date <", value, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateLessThanOrEqualTo(Date value) {
+            addCriterion("created_date <=", value, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateIn(List<Date> values) {
+            addCriterion("created_date in", values, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateNotIn(List<Date> values) {
+            addCriterion("created_date not in", values, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateBetween(Date value1, Date value2) {
+            addCriterion("created_date between", value1, value2, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedDateNotBetween(Date value1, Date value2) {
+            addCriterion("created_date not between", value1, value2, "createdDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyIsNull() {
+            addCriterion("last_modify is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyIsNotNull() {
+            addCriterion("last_modify is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyEqualTo(Date value) {
+            addCriterion("last_modify =", value, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyNotEqualTo(Date value) {
+            addCriterion("last_modify <>", value, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyGreaterThan(Date value) {
+            addCriterion("last_modify >", value, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyGreaterThanOrEqualTo(Date value) {
+            addCriterion("last_modify >=", value, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyLessThan(Date value) {
+            addCriterion("last_modify <", value, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyLessThanOrEqualTo(Date value) {
+            addCriterion("last_modify <=", value, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyIn(List<Date> values) {
+            addCriterion("last_modify in", values, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyNotIn(List<Date> values) {
+            addCriterion("last_modify not in", values, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyBetween(Date value1, Date value2) {
+            addCriterion("last_modify between", value1, value2, "lastModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastModifyNotBetween(Date value1, Date value2) {
+            addCriterion("last_modify not between", value1, value2, "lastModify");
             return (Criteria) this;
         }
 

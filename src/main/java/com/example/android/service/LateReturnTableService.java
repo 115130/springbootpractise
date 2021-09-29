@@ -3,18 +3,23 @@ package com.example.android.service;
 import com.example.android.domain.LateReturnTable;
 import com.example.android.domain.LateReturnTableExample;
 import com.example.android.mapper.LateReturnTableMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Service
 public class LateReturnTableService {
     @Resource
     LateReturnTableMapper lateReturnTableMapper;
 
-    public int addLateReturnTable(LateReturnTable lateReturnTable) {
+    public int addLateReturnTable(Long hostel,Long studentId) {
+        LateReturnTable lateReturnTable= new LateReturnTable();
+        lateReturnTable.setHostel(hostel);
+        lateReturnTable.setStudentId(studentId);
         lateReturnTable.setCreatedDate(new Date());
         return lateReturnTableMapper.insert(lateReturnTable);
     }
@@ -25,8 +30,15 @@ public class LateReturnTableService {
         return lateReturnTableMapper.selectByExample(lateReturnTableExample);
     }
 
-    public int modifyReturnTable(LateReturnTable lateReturnTable) {
+    public int modifyReturnTable(LateReturnTable lateReturnTable1) {
+        LateReturnTable lateReturnTable = lateReturnTableMapper.selectByPrimaryKey(lateReturnTable1.getId());
+        if (lateReturnTable==null){
+            return -1;
+        }
+        lateReturnTable.setStudentId(lateReturnTable1.getStudentId());
+        lateReturnTable.setHostel(lateReturnTable1.getHostel());
         lateReturnTable.setLastModify(new Date());
+        log.error(lateReturnTable.toString());
         return lateReturnTableMapper.updateByPrimaryKey(lateReturnTable);
     }
 

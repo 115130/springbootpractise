@@ -11,8 +11,10 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <h1>整个宿舍的所有学生信息</h1>
     <div class="container"  th:each="hostelView,status:${hostelViews}">
         <div class="row" >
+
             <div class="col-md-6 col-md-6"  th:if="${status.count%2==1}">
                <h3 th:text="'学生id: '+${hostelView.id}"></h3>
                 <p th:text="'学号：'+${hostelView.studentNumber}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -26,22 +28,6 @@
             </div>
         </div>
     </div>
-<!--    <div class="container" th:each="hostelView,status:${hostelViews}">-->
-<!--        <div class="row"  >-->
-<!--            <div class="col-md-6 col-md-6" th:if="${status.count==3}">-->
-
-<!--                <h5 th:text="${hostelView.id}"></h5>-->
-<!--                <p th:text="${hostelView.studentNumber}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
-<!--                <p th:text="${hostelView.studentName}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
-<!--            </div>-->
-<!--            <div class="col-md-6 col-md-6" th:if="${status.count==4}">-->
-
-<!--                <h5 th:text="${hostelView.id}"></h5>-->
-<!--                <p th:text="${hostelView.studentNumber}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
-<!--                <p th:text="${hostelView.studentName}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
 
 
 <body>

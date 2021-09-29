@@ -5,13 +5,14 @@ import com.example.android.domain.result.ExceptionMsg;
 import com.example.android.domain.result.ResponseData;
 import com.example.android.domain.view.ClassView;
 import com.example.android.service.ClassInfoService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("admin")
 public class ClassInfoController {
@@ -32,6 +33,14 @@ public class ClassInfoController {
         }
         return new ResponseData(ExceptionMsg.SUCCESS, classViewByStudentNumber);
     }
+    @PostMapping("findClassById")
+    public ResponseData findClassById(Long id) {
+        ClassInfo oneClassInfo = classInfoService.findOneClassInfo(id);
+        if (oneClassInfo == null) {
+            return new ResponseData(ExceptionMsg.ParamError);
+        }
+        return new ResponseData(ExceptionMsg.SUCCESS, oneClassInfo);
+    }
 
     @PostMapping("addClassInfo")
     public ResponseData addClassInfo(ClassInfo classInfo) {
@@ -51,13 +60,9 @@ public class ClassInfoController {
         return new ResponseData(ExceptionMsg.FAILED);
     }
 
-    @PostMapping("deleteClassInfo")
-    public ResponseData deleteClassInfo(Long classInfoId) {
-        int i = classInfoService.deleteClassInfo(classInfoId);
-        if (i > 0) {
-            return new ResponseData(ExceptionMsg.SUCCESS);
-        }
-        return new ResponseData(ExceptionMsg.FAILED);
+    @PostMapping("deleteClassInfoById")
+    public ResponseData deleteClassInfo(Long id) {
+        return classInfoService.deleteClassInfo(id);
     }
 
 }

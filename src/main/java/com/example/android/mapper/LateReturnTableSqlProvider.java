@@ -35,12 +35,12 @@ public class LateReturnTableSqlProvider {
             sql.VALUES("created_date", "#{createdDate,jdbcType=TIMESTAMP}");
         }
         
-        if (record.getLastModify() != null) {
-            sql.VALUES("last_modify", "#{lastModify,jdbcType=TIMESTAMP}");
-        }
-        
         if (record.getHostel() != null) {
             sql.VALUES("hostel", "#{hostel,jdbcType=BIGINT}");
+        }
+        
+        if (record.getLastModify() != null) {
+            sql.VALUES("last_modify", "#{lastModify,jdbcType=TIMESTAMP}");
         }
         
         if (record.getStudentId() != null) {
@@ -58,8 +58,8 @@ public class LateReturnTableSqlProvider {
             sql.SELECT("id");
         }
         sql.SELECT("created_date");
-        sql.SELECT("last_modify");
         sql.SELECT("hostel");
+        sql.SELECT("last_modify");
         sql.SELECT("student_id");
         sql.FROM("late_return_table");
         applyWhere(sql, example, false);
@@ -86,12 +86,12 @@ public class LateReturnTableSqlProvider {
             sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
         }
         
-        if (record.getLastModify() != null) {
-            sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
-        }
-        
         if (record.getHostel() != null) {
             sql.SET("hostel = #{record.hostel,jdbcType=BIGINT}");
+        }
+        
+        if (record.getLastModify() != null) {
+            sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
         }
         
         if (record.getStudentId() != null) {
@@ -108,8 +108,8 @@ public class LateReturnTableSqlProvider {
         
         sql.SET("id = #{record.id,jdbcType=BIGINT}");
         sql.SET("created_date = #{record.createdDate,jdbcType=TIMESTAMP}");
-        sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
         sql.SET("hostel = #{record.hostel,jdbcType=BIGINT}");
+        sql.SET("last_modify = #{record.lastModify,jdbcType=TIMESTAMP}");
         sql.SET("student_id = #{record.studentId,jdbcType=BIGINT}");
         
         LateReturnTableExample example = (LateReturnTableExample) parameter.get("example");
@@ -125,12 +125,12 @@ public class LateReturnTableSqlProvider {
             sql.SET("created_date = #{createdDate,jdbcType=TIMESTAMP}");
         }
         
-        if (record.getLastModify() != null) {
-            sql.SET("last_modify = #{lastModify,jdbcType=TIMESTAMP}");
-        }
-        
         if (record.getHostel() != null) {
             sql.SET("hostel = #{hostel,jdbcType=BIGINT}");
+        }
+        
+        if (record.getLastModify() != null) {
+            sql.SET("last_modify = #{lastModify,jdbcType=TIMESTAMP}");
         }
         
         if (record.getStudentId() != null) {
