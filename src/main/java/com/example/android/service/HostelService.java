@@ -29,6 +29,7 @@ public class HostelService {
 
     /**
      * 自动为学生安排宿舍
+     *
      * @param user 学生参数
      * @return
      */
@@ -37,7 +38,7 @@ public class HostelService {
         //找到所有住人数小于4的宿舍并排序再获取人数最多的（少）的宿舍
         hostelExample.createCriteria().andCountLessThan(4);
         List<Hostel> hostels = hostelMapper.selectByExample(hostelExample);
-        if (hostels.isEmpty()){
+        if (hostels.isEmpty()) {
             return -2;
         }
         hostels.sort(Comparator.comparingInt(Hostel::getCount));
@@ -69,6 +70,7 @@ public class HostelService {
 
     /**
      * 查看id不为空的宿舍
+     *
      * @return
      */
     public List<Hostel> findAllHostel() {
@@ -76,6 +78,7 @@ public class HostelService {
         hostelExample.createCriteria().andIdIsNotNull();
         return hostelMapper.selectByExample(hostelExample);
     }
+
     public Hostel findOneHostel(Long id) {
         return hostelMapper.selectByPrimaryKey(id);
     }
@@ -89,7 +92,7 @@ public class HostelService {
         //添加成功
         if (insert > 0) {
             return 1;
-        //添加失败
+            //添加失败
         } else if (insert == 0) {
             return -1;
         }
@@ -97,24 +100,22 @@ public class HostelService {
         return -3;
     }
 
-    public List<HostelView> findHostelByHostelId(Long hostelId){
+    public List<HostelView> findHostelByHostelId(Long hostelId) {
         List<HostelView> hostelViewList = new ArrayList<>();
         Hostel hostel = hostelMapper.selectByPrimaryKey(hostelId);
         UserExample userExample = new UserExample();
         userExample.createCriteria().andHostelEqualTo(hostelId);
         List<User> users = userMapper.selectByExample(userExample);
-        if (users.isEmpty()){
+        if (users.isEmpty()) {
             return null;
         }
         for (User user : users) {
-            hostelViewList.add(new HostelView(user,hostel));
+            hostelViewList.add(new HostelView(user, hostel));
         }
         return hostelViewList;
     }
 
-
-
-    public int updateHostel(Hostel hostel){
+    public int updateHostel(Hostel hostel) {
         Long id = hostel.getId();
         Hostel hostel1 = hostelMapper.selectByPrimaryKey(id);
         hostel1.setLastModify(new Date());
@@ -122,18 +123,18 @@ public class HostelService {
         return hostelMapper.updateByPrimaryKey(hostel1);
     }
 
-    public int updateHostelByCount(Hostel hostel){
+    public int updateHostelByCount(Hostel hostel) {
         Long id = hostel.getId();
-        hostel.setLastModify(new Date());
         Hostel hostel1 = hostelMapper.selectByPrimaryKey(id);
         hostel1.setCount(hostel.getCount());
+        hostel1.setLastModify(new Date());
         return hostelMapper.updateByPrimaryKey(hostel1);
     }
 
-    public ResponseData deleteHostelById(Long id){
+    public ResponseData deleteHostelById(Long id) {
         int i = hostelMapper.deleteByPrimaryKey(id);
-        if (i>0){
-           return new ResponseData(ExceptionMsg.SUCCESS);
+        if (i > 0) {
+            return new ResponseData(ExceptionMsg.SUCCESS);
         }
         return new ResponseData(ExceptionMsg.FAILED);
     }

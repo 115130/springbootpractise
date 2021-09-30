@@ -55,7 +55,7 @@
                 <p>"<span class="f_cB">*</span>"号为必填项目</p>
                 <table cellpadding="0" cellspacing="0">
                     <tr>
-                        <th>姓名：<span class="f_cB">*</span></th>
+                        <th>宿舍号：<span class="f_cB">*</span></th>
                         <td>
                             <div class="txtbox floatL" style="width:200px;">
                                 <input id="accessedHostel" type="text" v-model="obj.accessedHostel" placeholder="访问的宿舍号">
@@ -63,7 +63,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>密码：<span class="f_cB">*</span></th>
+                        <th>学生id：<span class="f_cB">*</span></th>
                         <td>
                             <div class="txtbox floatL" style="width:200px;">
                                 <input id="accessedStudent" name="password" v-model="obj.accessedStudent" type="text" placeholder="访问的学生">
@@ -72,7 +72,7 @@
                     </tr>
 
                     <tr>
-                        <th>班级：<span class="f_cB">*</span></th>
+                        <th>手机号：<span class="f_cB">*</span></th>
                         <td>
                             <div class="txtbox floatL" style="width:200px;">
                                 <input id="phone" name="password" type="text" v-model="obj.phone" placeholder="访问手机号">
@@ -107,7 +107,7 @@
             el: "#table",
             data: {obj: null}
         })
-        })
+
         $(function () {
             $.ajax({
                 url: "admin/findOneVisitTable",

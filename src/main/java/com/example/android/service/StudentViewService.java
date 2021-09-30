@@ -11,10 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -72,20 +69,27 @@ public class StudentViewService {
 
 
     public ResponseData updateStudentHostel(User user) {
-        HostelExample hostelExample = new HostelExample();
+        //如果所有信息为空将返回错误信息
+        if (user==null){
+            return new ResponseData(ExceptionMsg.ParamError);
+        }
+
         //找到所有住人数小于4的宿舍并排序再获取人数最多的（少）的宿舍
+        HostelExample hostelExample = new HostelExample();
         hostelExample.createCriteria().andCountLessThan(4);
         List<Hostel> hostels = hostelMapper.selectByExample(hostelExample);
-        hostels.sort(Comparator.comparingInt(Hostel::getCount));
-
-        //如果没有空余宿舍就返回-3
+        Collections.shuffle(hostels);
+        //如果没有空余宿舍就错误信息
         if (hostels.isEmpty()) {
             return new ResponseData("000005","没有空宿舍了");
         }
         Hostel newHostel = hostels.get(0);
-        if (user==null){
-            return new ResponseData(ExceptionMsg.ParamError);
-        }
+
+        //更新用户类宿舍号
+        newHostel.setCount(newHostel.getCount() + 1);
+        int i = hostelMapper.updateByPrimaryKey(newHostel);
+
+        //等宿舍更换完成后将旧宿舍信息更新
         Long hostelId = user.getHostel();
         Hostel oldHostel = hostelMapper.selectByPrimaryKey(hostelId);
         if (oldHostel==null){
@@ -93,14 +97,10 @@ public class StudentViewService {
             return assignHostel(user,newHostel);
         }
         oldHostel.setCount(oldHostel.getCount() - 1);
-        //更新用户类宿舍号
+        hostelMapper.updateByPrimaryKey(oldHostel);
+
         user.setHostel(newHostel.getId());
         userMapper.updateByPrimaryKey(user);
-
-        newHostel.setCount(newHostel.getCount() + 1);
-        int i = hostelMapper.updateByPrimaryKey(newHostel);
-
-        hostelMapper.updateByPrimaryKey(oldHostel);
         if (i>0){
             return new ResponseData(ExceptionMsg.SUCCESS);
         }
@@ -138,5 +138,6 @@ public class StudentViewService {
         }
         return studentView;
     }
+
 
 }
