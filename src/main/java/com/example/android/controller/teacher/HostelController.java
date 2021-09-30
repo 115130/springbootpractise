@@ -31,6 +31,15 @@ public class HostelController {
         return new ResponseData(ExceptionMsg.SUCCESS,hostelByHostelId);
     }
 
+    @PostMapping("findHostelInfoById")
+    public ResponseData v(Long id){
+        Hostel oneHostel = hostelService.findOneHostel(id);
+        if (oneHostel==null){
+            return new ResponseData(ExceptionMsg.ParamError);
+        }
+        return new ResponseData(ExceptionMsg.SUCCESS,oneHostel);
+    }
+
     @PostMapping("findAllHostel")
     public ResponseData findAllHostel(){
         List<Hostel> allHostel = hostelService.findAllHostel();
@@ -40,7 +49,7 @@ public class HostelController {
     @PostMapping("addHostel")
     public ResponseData addHostel(){
         int i = hostelService.addHostel();
-        if (i==0){
+        if (i>0){
             return new ResponseData(ExceptionMsg.SUCCESS);
         }else if (i==-2){
             return new ResponseData(ExceptionMsg.ParamError);
@@ -61,7 +70,6 @@ public class HostelController {
 
     @PostMapping("updateHostel")
     public ResponseData updateHostel(Hostel hostel){
-        log.error(hostel.toString());
         int score = hostelService.updateHostelByCount(hostel);
         if (score>0){
             return new ResponseData(ExceptionMsg.SUCCESS);
@@ -69,7 +77,7 @@ public class HostelController {
         return new ResponseData(ExceptionMsg.FAILED);
     }
 
-    @GetMapping("deleteHostelById")
+    @PostMapping("deleteHostelById")
     public ResponseData deleteHostelById(Long id){
         return hostelService.deleteHostelById(id);
     }

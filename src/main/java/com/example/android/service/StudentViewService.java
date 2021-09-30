@@ -32,7 +32,7 @@ public class StudentViewService {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUsernameIsNotNull().andAdminEqualTo(0);
         List<User> users = userMapper.selectByExample(userExample);
-        log.error(users.toString());
+
         ArrayList<StudentView> studentViews = new ArrayList<>();
         for (User user : users) {
             studentViews.add(getStudentViewByUserName(user));
@@ -70,6 +70,7 @@ public class StudentViewService {
         return userMapper.updateByPrimaryKey(user);
     }
 
+
     public ResponseData updateStudentHostel(User user) {
         HostelExample hostelExample = new HostelExample();
         //找到所有住人数小于4的宿舍并排序再获取人数最多的（少）的宿舍
@@ -88,7 +89,8 @@ public class StudentViewService {
         Long hostelId = user.getHostel();
         Hostel oldHostel = hostelMapper.selectByPrimaryKey(hostelId);
         if (oldHostel==null){
-            return new ResponseData("000005","旧宿舍不存在");
+            //找不到老宿舍或者未分配宿舍时进行自动分配
+            return assignHostel(user,newHostel);
         }
         oldHostel.setCount(oldHostel.getCount() - 1);
         //更新用户类宿舍号
@@ -103,6 +105,19 @@ public class StudentViewService {
             return new ResponseData(ExceptionMsg.SUCCESS);
         }
         return new ResponseData(ExceptionMsg.FAILED);
+    }
+
+    private ResponseData  assignHostel(User user,Hostel hostel){
+        user.setHostel(hostel.getId());
+        user.setStatus("已入住");
+        int i = userMapper.updateByPrimaryKey(user);
+        hostel.setCount(hostel.getCount()+1);
+        int i1 = hostelMapper.updateByPrimaryKey(hostel);
+        if ((i|i1)<=0){
+            return new ResponseData(ExceptionMsg.FAILED);
+        }
+        return new ResponseData(ExceptionMsg.SUCCESS);
+
     }
 
     private StudentView getStudentViewByUserName(User user) {

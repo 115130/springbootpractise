@@ -1,9 +1,11 @@
 package com.example.android;
 
 import com.example.android.domain.ClassInfoExample;
+import com.example.android.domain.Hostel;
 import com.example.android.domain.User;
 import com.example.android.domain.UserExample;
 import com.example.android.mapper.ClassInfoMapper;
+import com.example.android.mapper.HostelMapper;
 import com.example.android.mapper.LateReturnTableMapper;
 import com.example.android.mapper.UserMapper;
 import com.example.android.service.ClassInfoService;
@@ -97,7 +99,7 @@ class AdnroidApplicationTests {
     }
 
     @Resource
-    LateReturnTableMapper mapper;
+    HostelMapper mapper;
     @Test
     void c1(){
 //        ClassInfoExample classInfoExample = new ClassInfoExample();
@@ -106,7 +108,7 @@ class AdnroidApplicationTests {
 //            if (==null){
 //                throw new RuntimeException();
 //            }
-          System.out.println(mapper.selectByPrimaryKey(3L));
+          System.out.println(mapper.deleteByPrimaryKey(6L));
 //        System.out.println(mapper.selectByExample(classInfoExample));
     }
 

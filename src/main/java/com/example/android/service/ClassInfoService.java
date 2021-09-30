@@ -41,7 +41,6 @@ public class ClassInfoService {
 
     public int updateClassInfo(ClassInfo classInfo1) {
         Long id = classInfo1.getId();
-        log.error(id + "");
         ClassInfo classInfo = classInfoMapper.selectByPrimaryKey(id);
         classInfo.setClasses(classInfo1.getClasses());
         classInfo.setGrade(classInfo1.getGrade());

@@ -29,6 +29,9 @@ public class LateReturnTableService {
         lateReturnTableExample.createCriteria().andIdIsNotNull();
         return lateReturnTableMapper.selectByExample(lateReturnTableExample);
     }
+    public LateReturnTable findOneLateReturnTable(Long id) {
+        return lateReturnTableMapper.selectByPrimaryKey(id);
+    }
 
     public int modifyReturnTable(LateReturnTable lateReturnTable1) {
         LateReturnTable lateReturnTable = lateReturnTableMapper.selectByPrimaryKey(lateReturnTable1.getId());
@@ -38,7 +41,6 @@ public class LateReturnTableService {
         lateReturnTable.setStudentId(lateReturnTable1.getStudentId());
         lateReturnTable.setHostel(lateReturnTable1.getHostel());
         lateReturnTable.setLastModify(new Date());
-        log.error(lateReturnTable.toString());
         return lateReturnTableMapper.updateByPrimaryKey(lateReturnTable);
     }
 

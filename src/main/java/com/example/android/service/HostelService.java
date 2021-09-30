@@ -76,6 +76,9 @@ public class HostelService {
         hostelExample.createCriteria().andIdIsNotNull();
         return hostelMapper.selectByExample(hostelExample);
     }
+    public Hostel findOneHostel(Long id) {
+        return hostelMapper.selectByPrimaryKey(id);
+    }
 
     public int addHostel() {
         Hostel hostel = new Hostel();
@@ -85,7 +88,7 @@ public class HostelService {
         int insert = hostelMapper.insert(hostel);
         //添加成功
         if (insert > 0) {
-            return 0;
+            return 1;
         //添加失败
         } else if (insert == 0) {
             return -1;
@@ -129,7 +132,6 @@ public class HostelService {
 
     public ResponseData deleteHostelById(Long id){
         int i = hostelMapper.deleteByPrimaryKey(id);
-        log.error(String.valueOf(i));
         if (i>0){
            return new ResponseData(ExceptionMsg.SUCCESS);
         }

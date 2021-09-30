@@ -13,21 +13,27 @@
     <script type="text/javascript">
         $(function () {
             $("#submit").click(function () {
-                let id =$("#id").val();
-                let username =$("#username").val();
-                let password =$("#password").val()
+                let id = $("#id").val();
+                let username = $("#username").val();
+                let password = $("#password").val()
                 let classInfo = $("#classInfo").val();
                 let hostel = $("#hostel").val();
                 $.ajax({
-                    url:"admin/updateStudent",
-                    data:{"id":id,"username":username,"password":password,"hostel":hostel,"classInfo":classInfo},
-                    type:"POST",
-                    dataType:"json",
-                    success:function (data) {
+                    url: "admin/updateStudent",
+                    data: {
+                        "id": id,
+                        "username": username,
+                        "password": password,
+                        "hostel": hostel,
+                        "classInfo": classInfo
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
                         layer.msg(data.rspMsg)
-                        setTimeout(function (){
-                            location.href="allStudent.html";
-                        },200)
+                        setTimeout(function () {
+                            location.href = "allStudent.html";
+                        }, 200)
                     },
                 });
             })
@@ -39,72 +45,76 @@
 <!-- Popup -->
 
 <div id="Popup" style="margin-left: 200px;">
-
+    <h2>修改学生信息</h2>
     <!-- SubPopup -->
     <div id="SubPopup">
         <form th:action="@{/updateUser}" method="post">
-        <input type="hidden" id="id" th:value="${id}">
-        <div class="form_boxC" id="table">
-            <p>"<span class="f_cB">*</span>"号为必填项目</p>
-            <table cellpadding="0" cellspacing="0">
-                <tr>
-                    <th>姓名：<span class="f_cB">*</span></th>
-                    <td>
-                        <div class="txtbox floatL" style="width:200px;">
-                            <input id="username" type="text"   placeholder="请输入姓名">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>密码：<span class="f_cB">*</span></th>
-                    <td>
-                        <div class="txtbox floatL" style="width:200px;">
-                            <input id="password" name="password" type="text"  placeholder="请输入密码">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>宿舍：<span class="f_cB">*</span></th>
-                    <td>
-                        <div class="txtbox floatL" style="width:200px;">
-                            <input id="hostel" name="password" type="text"  placeholder="宿舍号码">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>班级：<span class="f_cB">*</span></th>
-                    <td>
-                        <div class="txtbox floatL" style="width:200px;">
-                            <input id="classInfo" name="password" type="text"  placeholder="班级号码">
-                        </div>
-                    </td>
-                </tr>
+            <input type="hidden" id="id" th:value="${id}">
+            <div class="form_boxC">
+                <p>"<span class="f_cB">*</span>"号为必填项目</p>
+                <table cellpadding="0" cellspacing="0" id="table">
+                    <tr>
+                        <th>姓名：<span class="f_cB">*</span></th>
+                        <td>
+                            <div class="txtbox floatL" style="width:200px;">
+                                <input id="username" type="text" v-model="obj.username" placeholder="请输入姓名">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>密码：<span class="f_cB">*</span></th>
+                        <td>
+                            <div class="txtbox floatL" style="width:200px;">
+                                <input id="password" name="password" type="text" placeholder="请输入密码">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>班级：<span class="f_cB">*</span></th>
+                        <td>
+                            <div class="txtbox floatL" style="width:200px;">
+                                <input id="classInfo" name="password" type="text" v-model="obj.studentNumber" placeholder="班级号码">
+                            </div>
+                        </td>
+                    </tr>
 
 
+                </table>
+            </div>
 
-            </table>
-        </div>
+            <!-- SubPopup -->
 
-    <!-- SubPopup -->
+            <div id="BtmBtn">
+                <div class="btn_boxB floatR mag_l20">
+                    <input name="" type="reset" value="重置"
+                           th:onmousemove="this.className='input_move'"
+                           th:onmouseout="this.className='input_out'">
+                </div>
+                <div class="btn_box floatR">
+                    <input id="submit" name="" type="button" value="提交"
+                           th:onmousemove="this.className='input_move'"
+                           th:onmouseout="this.className='input_out'">
+                </div>
 
-    <div id="BtmBtn">
-        <div class="btn_boxB floatR mag_l20">
-            <input name="" type="reset" value="重置"
-                   th:onmousemove="this.className='input_move'"
-                   th:onmouseout="this.className='input_out'">
-        </div>
-        <div class="btn_box floatR">
-            <input id="submit" name="" type="button" value="提交"
-                   th:onmousemove="this.className='input_move'"
-                   th:onmouseout="this.className='input_out'">
-        </div>
-
+            </div>
     </div>
-</div>
     <script>
-        new Vue({
+
+        var id = $("#id").val()
+        var v = new Vue({
             el: "#table",
-            data: {obj:null}
+            data: {obj: null}
+        })
+        $(function () {
+            $.ajax({
+                url: "admin/findStudentByUserId",
+                data: {"id": id,},
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    v.obj = data.data
+                },
+            });
         })
     </script>
 

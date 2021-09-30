@@ -58,11 +58,11 @@ public class UserController {
 
     @PostMapping("updateStudent")
     public ResponseData updateStudentClassInfo(User user1) {
+
         User user = studentViewService.selectUserByUserId(user1.getId());
         user.setUsername(user1.getUsername());
         user.setPassword(EncryptUtil.encrypt(user1.getPassword()));
         user.setClassInfo(user1.getClassInfo());
-        user.setHostel(user1.getHostel());
         ResponseData responseData = studentViewService.updateStudentHostel(user);
         if (!responseData.getRspCode().equals("000000")){
             return responseData;

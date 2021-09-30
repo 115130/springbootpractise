@@ -14,18 +14,18 @@
     <script type="text/javascript">
         $(function () {
             $("#submit").click(function () {
-                let id =$("#id").val();
-                let count =$("#count").val();
+                let id = $("#id").val();
+                let count = $("#count").val();
                 $.ajax({
-                    url:"admin/updateHostel",
-                    data:{"id":id,"count":count},
-                    type:"POST",
-                    dataType:"json",
-                    success:function (data) {
+                    url: "admin/updateHostel",
+                    data: {"id": id, "count": count},
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
                         layer.msg(data.rspMsg)
-                        setTimeout(function (){
-                            location.href="toAllHostel"
-                        },200);
+                        setTimeout(function () {
+                            location.href = "toAllHostel"
+                        }, 200);
                     },
                 });
             })
@@ -36,46 +36,58 @@
 <body>
 <!-- Popup -->
 
-<div id="Popup" style="margin-left: 200px;" id="table">
+<div id="Popup" style="margin-left: 200px;" >
     <h1>修改宿舍的人数</h1>
     <!-- SubPopup -->
     <div id="SubPopup">
         <form th:action="@{/updateUser}" method="post">
-        <input type="hidden" id="id" th:value="${id}">
-        <div class="form_boxC">
-            <p>"<span class="f_cB">*</span>"号为必填项目</p>
-            <table cellpadding="0" cellspacing="0">
-                <tr>
-                    <th>宿舍总数：<span class="f_cB">*</span></th>
-                    <td>
-                        <div class="txtbox floatL" style="width:200px;">
-                            <input id="count" type="text"   placeholder="宿舍总数">
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
+            <input type="hidden" id="id" th:value="${id}">
+            <div class="form_boxC">
+                <p>"<span class="f_cB">*</span>"号为必填项目</p>
+                <table cellpadding="0" cellspacing="0" id="table">
+                    <tr>
+                        <th>宿舍总数：<span class="f_cB">*</span></th>
+                        <td>
+                            <div class="txtbox floatL" style="width:200px;">
+                                <input id="count" type="text"  v-model="obj.count" placeholder="宿舍总数">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
-    <!-- SubPopup -->
+            <!-- SubPopup -->
 
-    <div id="BtmBtn">
-        <div class="btn_boxB floatR mag_l20">
-            <input name="" type="reset" value="重置"
-                   th:onmousemove="this.className='input_move'"
-                   th:onmouseout="this.className='input_out'">
-        </div>
-        <div class="btn_box floatR">
-            <input id="submit" name="" type="button" value="提交"
-                   th:onmousemove="this.className='input_move'"
-                   th:onmouseout="this.className='input_out'">
-        </div>
+            <div id="BtmBtn">
+                <div class="btn_boxB floatR mag_l20">
+                    <input name="" type="reset" value="重置"
+                           th:onmousemove="this.className='input_move'"
+                           th:onmouseout="this.className='input_out'">
+                </div>
+                <div class="btn_box floatR">
+                    <input id="submit" name="" type="button" value="提交"
+                           th:onmousemove="this.className='input_move'"
+                           th:onmouseout="this.className='input_out'">
+                </div>
 
+            </div>
     </div>
-</div>
     <script>
-        new Vue({
+        var id = $("#id").val()
+        var v = new Vue({
             el: "#table",
-            data: {obj:null}
+            data: {obj: null}
+        })
+        $(function () {
+            $.ajax({
+                url: "admin/findHostelInfoById",
+                data: {"id": id,},
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    v.obj = data.data
+                },
+            });
         })
     </script>
 

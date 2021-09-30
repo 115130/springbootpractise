@@ -23,10 +23,7 @@ public interface HostelMapper {
     @DeleteProvider(type=HostelSqlProvider.class, method="deleteByExample")
     int deleteByExample(HostelExample example);
 
-    @Delete({
-        "delete from hostel",
-        "where id = #{id,jdbcType=BIGINT}"
-    })
+    @Delete("delete from hostel where id = #{id}")
     int deleteByPrimaryKey(Long id);
 
     @Insert({

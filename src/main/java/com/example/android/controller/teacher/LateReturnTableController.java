@@ -35,6 +35,12 @@ public class LateReturnTableController {
         return new ResponseData(ExceptionMsg.SUCCESS, allLateReturnTable);
     }
 
+    @PostMapping("findOneLateReturnTable")
+    public ResponseData findOneLateReturnTable(Long id) {
+        LateReturnTable oneLateReturnTable = lateReturnTableService.findOneLateReturnTable(id);
+        return new ResponseData(ExceptionMsg.SUCCESS, oneLateReturnTable);
+    }
+
     @PostMapping("modifyReturnTable")
     public ResponseData modifyReturnTable(LateReturnTable lateReturnTable) {
         int i = lateReturnTableService.modifyReturnTable(lateReturnTable);

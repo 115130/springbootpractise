@@ -50,7 +50,7 @@
                 <th>专业名：<span class="f_cB">*</span></th>
                 <td>
                     <div class="txtbox floatL" style="width:200px;">
-                        <input id="speciality" type="text" placeholder="专业名">
+                        <input id="speciality" type="text" v-model="obj.speciality" placeholder="专业名">
                     </div>
                 </td>
             </tr>
@@ -58,7 +58,7 @@
                 <th>班级名：<span class="f_cB">*</span></th>
                 <td>
                     <div class="txtbox floatL" style="width:200px;">
-                        <input id="classes" name="password" type="text" placeholder="班级名">
+                        <input id="classes" name="password" type="text" v-model="obj.classes" placeholder="班级名">
                     </div>
                 </td>
             </tr>
@@ -66,7 +66,7 @@
                 <th>年级：<span class="f_cB">*</span></th>
                 <td>
                     <div class="txtbox floatL" style="width:200px;">
-                        <input id="grade" name="password" type="text" placeholder="年级">
+                        <input id="grade" name="password" type="text" v-model="obj.grade" placeholder="年级">
                     </div>
                 </td>
             </tr>

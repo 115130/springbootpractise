@@ -104,7 +104,6 @@ public class PageViewController {
     @GetMapping("toViewHostel")
     public String toViewHostel(Long id, HttpServletRequest request) {
         List<HostelView> hostelByHostelId = hostelService.findHostelByHostelId(id);
-        log.error(hostelByHostelId.toString());
         request.setAttribute("hostelViews", hostelByHostelId);
         return "viewHostel";
     }

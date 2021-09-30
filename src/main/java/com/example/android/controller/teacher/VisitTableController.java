@@ -24,6 +24,11 @@ public class VisitTableController {
         List<VisitTable> allVisitTable = visitTableService.findAllVisitTable();
         return new ResponseData(ExceptionMsg.SUCCESS, allVisitTable);
     }
+    @PostMapping("findOneVisitTable")
+    public ResponseData findOneVisitTable(Long id) {
+        VisitTable oneVisitTable = visitTableService.findOneVisitTable(id);
+        return new ResponseData(ExceptionMsg.SUCCESS, oneVisitTable);
+    }
 
     @PostMapping("addVisitTable")
     public ResponseData addVisitTable(VisitTable visitTable) {

@@ -10,7 +10,7 @@
     <script src="js/layer.js"></script>
 </head>
 <body>
-<h2>所有信息</h2>
+<h2>所有宿舍信息</h2>
 
 
 <div width="80%" align="center">
@@ -47,7 +47,7 @@
         methods: {
             deleteHostelById:function (id){
                 $.ajax({
-                    url: 'admin/deleteClassInfoById',
+                    url: 'admin/deleteHostelById',
                     data: {"id": id,},
                     type: 'POST',
                     dataType: 'json',

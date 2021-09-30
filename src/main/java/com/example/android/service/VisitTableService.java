@@ -20,6 +20,10 @@ public class VisitTableService {
         return visitTableMapper.selectByExample(visitTableExample);
     }
 
+    public VisitTable findOneVisitTable(Long id){
+        return visitTableMapper.selectByPrimaryKey(id);
+    }
+
     public int addVisitTable(VisitTable visitTable){
         visitTable.setCreatedDate(new Date());
         return visitTableMapper.insert(visitTable);
