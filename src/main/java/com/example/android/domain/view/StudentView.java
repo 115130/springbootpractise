@@ -14,9 +14,9 @@ import java.io.Serializable;
 public class StudentView implements Serializable {
     private Long id;
 
-    private Long classInfo;
+    private ClassInfo classInfo;
 
-    private Long hostel;
+    private Hostel hostel;
 
     private String status;
 

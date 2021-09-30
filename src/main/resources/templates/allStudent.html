@@ -29,9 +29,9 @@
             <td >{{user.studentNumber}}</td>
             <td >{{user.username}}</td>
             <td >{{user.status}}</td>
-            <td ><a :href="'toViewClassInfo?studentNumber='+user.studentNumber">{{user.classInfo}}</a>
+            <td ><a :href="'toViewClassInfo?studentNumber='+user.studentNumber">{{user.classInfo.speciality}}{{user.classInfo.grade}}级{{user.classInfo.classes}}</a>
             </td>
-            <td ><a :href="'toViewHostel?id='+user.hostel">{{user.hostel}}</a></td>
+            <td ><a :href="'toViewHostel?id='+user.hostel.id">{{user.hostel.id}}号宿舍</a></td>
             <td><a :href="'toEditUser?id='+user.id">修改</a>|<a v-on:click="deleteHostelById(user.id)">删除</a></td>
         </tr>
     </table>

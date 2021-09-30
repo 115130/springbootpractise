@@ -131,10 +131,10 @@ public class StudentViewService {
         ClassInfo classInfo = classInfoMapper.selectByPrimaryKey(user.getClassInfo());
 
         if(hostel!=null){
-            studentView.setHostel(hostel.getId());
+            studentView.setHostel(hostel);
         }
         if (classInfo!=null){
-            studentView.setClassInfo(classInfo.getId());
+            studentView.setClassInfo(classInfo);
         }
         return studentView;
     }

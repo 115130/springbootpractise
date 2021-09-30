@@ -32,6 +32,9 @@ public class VisitTableService {
     public int updateVisitTable(VisitTable visitTable1){
         VisitTable visitTable = visitTableMapper.selectByPrimaryKey(visitTable1.getId());
         visitTable.setLastModify(new Date());
+        visitTable.setAccessedHostel(visitTable1.getAccessedHostel());
+        visitTable.setAccessedStudent(visitTable1.getAccessedStudent());
+        visitTable.setPhone(visitTable1.getPhone());
         return visitTableMapper.updateByPrimaryKey(visitTable);
     }
     public int deleteVisitTable(Long visitTableId){

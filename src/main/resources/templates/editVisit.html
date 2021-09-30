@@ -49,11 +49,11 @@
     <h1>修改访客表</h1>
     <!-- SubPopup -->
     <div id="SubPopup">
-        <form th:action="@{/updateUser}" method="post" id="table">
+
             <input type="hidden" id="id" th:value="${id}">
             <div class="form_boxC">
                 <p>"<span class="f_cB">*</span>"号为必填项目</p>
-                <table cellpadding="0" cellspacing="0">
+                <table cellpadding="0" cellspacing="0" id="table">
                     <tr>
                         <th>宿舍号：<span class="f_cB">*</span></th>
                         <td>

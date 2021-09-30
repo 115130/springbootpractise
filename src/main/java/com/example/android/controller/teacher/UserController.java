@@ -38,8 +38,8 @@ public class UserController {
     }
 
     @PostMapping("deleteStudent")
-    public ResponseData deleteStudent(String studentNumber) {
-        int i = studentViewService.deleteStudent(studentNumber);
+    public ResponseData deleteStudent(Long id) {
+        int i = studentViewService.deleteStudentById(id);
         if (i > 0) {
             return new ResponseData(ExceptionMsg.SUCCESS);
         }

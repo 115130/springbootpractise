@@ -13,13 +13,12 @@
     <script type="text/javascript">
         $(function () {
             $("#submit").click(function () {
-                var id = $("#id").val()
                 var accessedHostel = $("#accessedHostel").val()
                 var accessedStudent = $("#accessedStudent").val()
                 var phone = $("#phone").val()
                 $.ajax({
                     url: "admin/addVisitTable",
-                    data: {"id":id,"phone":phone,"accessedHostel":accessedHostel,"accessedStudent":accessedStudent},
+                    data: {"phone":phone,"accessedHostel":accessedHostel,"accessedStudent":accessedStudent},
                     type: "POST",
                     dataType: "json",
                     success: function (data) {
@@ -43,14 +42,6 @@
     <div id="SubPopup">
     <p>"<span class="f_cB">*</span>"号为必填项目</p>
     <table cellpadding="0" cellspacing="0">
-        <tr>
-            <th>学生id：<span class="f_cB">*</span></th>
-            <td>
-                <div class="txtbox floatL" style="width:200px;">
-                    <input id="id" type="text" placeholder="学生id">
-                </div>
-            </td>
-        </tr>
         <tr>
             <th>访问的宿舍：<span class="f_cB">*</span></th>
             <td>
